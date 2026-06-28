@@ -871,77 +871,104 @@ const init = () => {
         });
     }
 
-    // --- 14. Scroll-Driven Hero Video Player ---
-    const setupHeroVideoScroll = () => {
-        const video = document.getElementById("hero-video");
+    // --- 14. Scroll-Driven Hero Image Sequence (canvas sequencer) ---
+    const setupHeroFrameSequence = () => {
+        const canvas = document.getElementById("hero-canvas");
         const container = document.getElementById("hero-scroll-container");
         const heroImg = document.getElementById("hero-bg-img");
-        if (!video || !container) return;
+        if (!canvas || !container) return;
 
-        let targetTime = 0;
-        let currentTime = 0;
-        let isVideoReady = false;
+        const ctx = canvas.getContext("2d");
 
-        const updateVideoFrame = () => {
-            if (!isVideoReady) return;
-            
-            const containerRect = container.getBoundingClientRect();
-            const containerHeight = containerRect.height;
-            const viewportHeight = window.innerHeight;
-            
-            const scrollRange = containerHeight - viewportHeight;
-            if (scrollRange <= 0) return;
+        // Frames exported from assets/video/hero_scroll.mp4 -> assets/frames/frame_001..096.webp
+        const FRAME_COUNT = 96;
+        const framePath = (n) => `assets/frames/frame_${String(n).padStart(3, "0")}.webp`;
 
-            // Scroll offset within the container
-            const currentScroll = -containerRect.top;
-            
-            // Percentage of scroll within the hero section range
-            let scrollFraction = Math.max(0, Math.min(1, currentScroll / scrollRange));
-            
-            targetTime = scrollFraction * video.duration;
-        };
+        const images = new Array(FRAME_COUNT);
+        let ready = false;
 
-        const setVideoReady = () => {
-            if (isVideoReady) return;
-            isVideoReady = true;
-            video.classList.add("ready");
-            if (heroImg) {
-                heroImg.classList.add("hidden");
+        // Eased playhead: targetFrame follows scroll, currentFrame eases toward it.
+        let targetFrame = 0;
+        let currentFrame = 0;
+        let lastDrawn = -1;
+
+        // Keep the canvas backing store matched to its on-screen size (DPR-aware).
+        const ensureSize = () => {
+            const dpr = Math.min(window.devicePixelRatio || 1, 2);
+            const w = Math.round(canvas.clientWidth * dpr);
+            const h = Math.round(canvas.clientHeight * dpr);
+            if (w === 0 || h === 0) return false;
+            if (canvas.width !== w || canvas.height !== h) {
+                canvas.width = w;
+                canvas.height = h;
+                lastDrawn = -1; // resizing clears the buffer, so force a redraw
             }
-            updateVideoFrame();
+            return true;
         };
 
-        // Listen for metadata and loading states
-        video.addEventListener("loadedmetadata", setVideoReady);
-        video.addEventListener("canplay", setVideoReady);
-        video.addEventListener("canplaythrough", setVideoReady);
+        // Draw a frame with "object-fit: cover" math so it always fills the canvas.
+        const drawFrame = (index) => {
+            const img = images[index];
+            if (!img || !img.complete || img.naturalWidth === 0) return;
+            const cw = canvas.width;
+            const ch = canvas.height;
+            const iw = img.naturalWidth;
+            const ih = img.naturalHeight;
+            const scale = Math.max(cw / iw, ch / ih);
+            const dw = iw * scale;
+            const dh = ih * scale;
+            const dx = (cw - dw) / 2;
+            const dy = (ch - dh) / 2;
+            ctx.clearRect(0, 0, cw, ch);
+            ctx.drawImage(img, dx, dy, dw, dh);
+            lastDrawn = index;
+        };
 
-        // Force immediate video loading
-        video.load();
+        const computeTargetFrame = () => {
+            const rect = container.getBoundingClientRect();
+            const scrollRange = rect.height - window.innerHeight;
+            if (scrollRange <= 0) return;
+            const fraction = Math.max(0, Math.min(1, -rect.top / scrollRange));
+            targetFrame = fraction * (FRAME_COUNT - 1);
+        };
 
-        // Fallback if cached or preloaded
-        if (video.readyState >= 1) {
-            setVideoReady();
+        const reveal = () => {
+            if (ready) return;
+            ready = true;
+            ensureSize();
+            drawFrame(0);
+            canvas.classList.add("ready");
+            if (heroImg) heroImg.classList.add("hidden");
+            computeTargetFrame();
+        };
+
+        // Preload every frame; reveal as soon as the first one is decoded.
+        for (let i = 0; i < FRAME_COUNT; i++) {
+            const img = new Image();
+            img.decoding = "async";
+            if (i === 0) img.addEventListener("load", reveal, { once: true });
+            img.src = framePath(i + 1);
+            images[i] = img;
         }
+        // In case the first frame is cached before the listener attaches.
+        if (images[0].complete && images[0].naturalWidth > 0) reveal();
 
-        window.addEventListener("scroll", updateVideoFrame, { passive: true });
-        window.addEventListener("resize", updateVideoFrame, { passive: true });
+        window.addEventListener("scroll", computeTargetFrame, { passive: true });
+        window.addEventListener("resize", () => {
+            ensureSize();
+            computeTargetFrame();
+        }, { passive: true });
 
-        // Animation loop for butter-smooth easing
+        // Smooth easing loop towards the scroll-driven target frame.
         const animate = () => {
-            if (isVideoReady && video.duration) {
-                // Smoothly ease current time towards target time
-                currentTime += (targetTime - currentTime) * 0.15;
-                
-                // Avoid redundant video updates if the change is sub-frame
-                if (Math.abs(currentTime - video.currentTime) > 0.01) {
-                    // Safe clamp just before duration end to avoid loop errors
-                    video.currentTime = Math.max(0, Math.min(video.duration - 0.02, currentTime));
-                }
+            if (ready && ensureSize()) {
+                currentFrame += (targetFrame - currentFrame) * 0.15;
+                const idx = Math.max(0, Math.min(FRAME_COUNT - 1, Math.round(currentFrame)));
+                if (idx !== lastDrawn) drawFrame(idx);
             }
             requestAnimationFrame(animate);
         };
-        
+
         animate();
     };
 
@@ -952,7 +979,7 @@ const init = () => {
     setupTimelineSlider();
     setupContactForm();
     addSpinnerKeyframes();
-    setupHeroVideoScroll();
+    setupHeroFrameSequence();
 };
 
 if (document.readyState === "loading") {
