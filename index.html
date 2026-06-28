@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Montserrat:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="index.css?v=1.4">
+    <link rel="stylesheet" href="index.css?v=1.9">
 </head>
 <body class="dark-theme">
     <!-- SVG Definitions for Patterns & Filters -->
@@ -550,12 +550,12 @@
                 <!-- Left Column: Layered Images & Progress Bar -->
                 <div class="slides-image-wrapper">
                     <div class="slides-images">
-                        <img src="assets/image/slideshow-river.png" alt="Energy & Petroleum" class="slide-img active">
-                        <img src="assets/image/slideshow-golf.png" alt="Real Estate & Infrastructure" class="slide-img">
-                        <img src="assets/image/slideshow-downtown.png" alt="Technology & Innovation" class="slide-img">
-                        <img src="assets/image/slideshow-river.png" alt="Retail & Consumer Goods" class="slide-img">
-                        <img src="assets/image/slideshow-golf.png" alt="Food & Beverage" class="slide-img">
-                        <img src="assets/image/slideshow-downtown.png" alt="Defense & Security" class="slide-img">
+                        <img src="assets/image/sector-energy.png" alt="Energy & Petroleum" class="slide-img active">
+                        <img src="assets/image/sector-real-estate.png" alt="Real Estate & Infrastructure" class="slide-img">
+                        <img src="assets/image/sector-technology.png" alt="Technology & Innovation" class="slide-img">
+                        <img src="assets/image/sector-retail.png" alt="Retail & Consumer Goods" class="slide-img">
+                        <img src="assets/image/sector-food.png" alt="Food & Beverage" class="slide-img">
+                        <img src="assets/image/sector-defense.png" alt="Defense & Security" class="slide-img">
                     </div>
                     <!-- Single progress bar instead of segments -->
                     <div class="slideshow-progress-bar-container">
@@ -668,7 +668,9 @@
                 <div class="footer-card-inner">
                     <!-- Left: Address & Inquiries info -->
                     <div class="footer-info-panel">
-                        <span class="footer-inquiries-label" data-en="[Inquiries]" data-ar="[استفسارات]">[Inquiries]</span>
+                        <div class="footer-logo">
+                            <img src="assets/icon/logo hero.svg" alt="Taj Holding Group Logo" class="footer-logo-img">
+                        </div>
                         <h2 class="footer-info-heading" data-en="Partnering for global impact." data-ar="شراكةٌ من أجل تأثيرٍ عالمي.">Partnering for global impact.</h2>
                         <p class="footer-info-desc" data-en="Reach out to explore strategic partnerships, investment opportunities, or media relations. Our dedicated team is here to shape the next chapter of growth with you." data-ar="تواصل معنا لاستكشاف الشراكات الاستراتيجية، الفرص الاستثمارية، أو العلاقات الإعلامية. فريقنا مستعد لبناء فصل جديد من النجاح والنمو معك.">
                             Reach out to explore strategic partnerships, investment opportunities, or media relations. Our dedicated team is here to shape the next chapter of growth with you.
@@ -678,6 +680,7 @@
                             <span class="address-title" data-en="WHERE" data-ar="المقر">WHERE</span>
                             <span class="address-details" data-en="Global Headquarters, Riyadh, Kingdom of Saudi Arabia." data-ar="المقر الرئيسي، الرياض، المملكة العربية السعودية.">Global Headquarters, Riyadh, Kingdom of Saudi Arabia.</span>
                         </div>
+                        <span class="submit-note" data-en="Our team will respond within two business days." data-ar="سيقوم فريقنا بالرد خلال يومي عمل.">Our team will respond within two business days.</span>
                     </div>
 
                     <!-- Right: Interactive Contact Form -->
@@ -704,9 +707,11 @@
                         <div class="form-submit-row">
                             <button type="submit" class="form-submit-btn">
                                 <span class="submit-text" data-en="SEND INQUIRY" data-ar="إرسال الطلب">SEND INQUIRY</span>
-                                <span class="submit-arrow">⟶</span>
+                                <svg class="submit-arrow-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    <polyline points="12 5 19 12 12 19"></polyline>
+                                </svg>
                             </button>
-                            <span class="submit-note" data-en="Our team will respond within two business days." data-ar="سيقوم فريقنا بالرد خلال يومي عمل.">Our team will respond within two business days.</span>
                         </div>
                     </form>
                 </div>
@@ -747,26 +752,6 @@
                             </svg>
                         </a>
                     </li>
-                    <li>
-                        <a href="#telegram" class="footer-social-link" aria-label="Telegram">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M11.944 0C5.344 0 0 5.344 0 12c0 6.656 5.344 12 12 12 6.656 0 12-5.344 12-12C24 5.344 18.656 0 12.056 0zM18.672 8.256l-2.224 10.464c-.16.736-.608.912-1.216.56l-3.392-2.512-1.632 1.584c-.176.176-.32.32-.656.32l.24-3.44 6.256-5.648c.272-.24-.064-.368-.416-.128L8.192 13.52 4.864 12.48c-.72-.224-.736-.72.16-.1072L18.064 7.36c.608-.224 1.136.144.608.896z"/>
-                            </svg>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#medium" class="footer-social-link" aria-label="Medium">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zm7.42 0c0 3.54-1.51 6.42-3.38 6.42s-3.38-2.88-3.38-6.42 1.51-6.42 3.38-6.42 3.38 2.88 3.38 6.42zm3.04 0c0 3.24-.31 5.86-.7 5.86s-.7-2.62-.7-5.86.31-5.86.7-5.86.7 2.62.7 5.86z"/>
-                            </svg>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#discord" class="footer-social-link" aria-label="Discord">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M20.317 4.37a19.791 19.791 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.617-1.25.077.077 0 00-.079-.037A19.736 19.736 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.094 13.094 0 01-1.873-.894.077.077 0 01-.008-.128c.126-.093.252-.19.372-.287a.075.075 0 01.077-.011c3.92 1.793 8.18 1.793 12.061 0a.075.075 0 01.077-.011c.12.099.246.195.373.289a.077.077 0 01-.006.127 12.299 12.299 0 01-1.873.894.077.077 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.839 19.839 0 006.002-3.03.077.077 0 00.032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 00-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.156-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.156 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.156-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.156 2.418z"/>
-                            </svg>
-                        </a>
                 </ul>
             </div>
         </div>
