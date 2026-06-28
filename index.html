@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taj Holding Group | Building Enduring Value</title>
+    <meta name="description" content="Taj Holding Group is a diversified investment company focused on building and scaling exceptional businesses across industries and generations.">
+    
+    <!-- Premium Fonts from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Montserrat:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="index.css?v=1.4">
+</head>
+<body class="dark-theme">
+    <!-- SVG Definitions for Patterns & Filters -->
+    <svg style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <!-- Pattern Definition matching the Figma background lines -->
+            <pattern id="bg-line-pattern" width="86.44" height="173.94" patternUnits="userSpaceOnUse">
+                <!-- Path 1 (down & right) -->
+                <path d="M0.947238 173.015V162.273H0.966664V50.4424L32.8509 32.047L85.5169 1.64065V38.4314L34.4225 67.9284L32.8509 68.8378V173.015H0.947238Z" 
+                      stroke="#ECE1D0" stroke-width="1.89" stroke-miterlimit="10" fill="none" />
+                <!-- Path 2 (up & left) -->
+                <path d="M85.516 0.947238V11.67H85.4975V123.501L53.6133 141.896L0.947238 172.303V135.512L52.0407 106.034L53.6133 105.125V0.947238H85.516Z" 
+                      stroke="#ECE1D0" stroke-width="1.89" stroke-miterlimit="10" fill="none" />
+            </pattern>
+        </defs>
+    </svg>
+
+    <!-- 1. Interactive Loading Screen -->
+    <main id="loading-screen" class="loading-container">
+        <!-- Repeating geometric line pattern -->
+        <div class="pattern-overlay">
+        <div class="pattern-item" style="position: absolute; top: -4.09%; right: 12.36%; bottom: 82.7%; left: 81.88%; opacity: 0.4;">
+            <div style="position: absolute; top: -0.96%; right: -1.12%; bottom: -0.55%; left: -1.12%;">
+                <img src="assets/patterns/ic_step_upper_01.svg" alt="" style="display: block; width: 100%; height: 100%; object-fit: fill;">
+            </div>
+        </div>
+        <div class="pattern-item" style="position: absolute; top: 4.09%; right: 4.41%; bottom: 74.52%; left: 89.83%; opacity: 0.4;">
+            <div style="position: absolute; top: -0.55%; right: -1.12%; bottom: -0.96%; left: -1.12%;">
+                <img src="assets/patterns/ic_step_lower_01.svg" alt="" style="display: block; width: 100%; height: 100%; object-fit: fill;">
+            </div>
+        </div>
+        <div class="pattern-item" style="position: absolute; top: 9.56%; right: 8.37%; bottom: 69.05%; left: 85.88%; opacity: 0.4;">
+            <div style="position: absolute; top: -0.96%; right: -1.12%; bottom: -0.55%; left: -1.12%;">
+                <img src="assets/patterns/ic_step_upper_02.svg" alt="" style="display: block; width: 100%; height: 100%; object-fit: fill;">
+            </div>
+        </div>
+        <div class="pattern-item" style="position: absolute; top: 17.74%; right: 0.42%; bottom: 60.87%; left: 93.83%; opacity: 0.4;">
+            <div style="position: absolute; top: -0.55%; right: -1.12%; bottom: -0.96%; left: -1.12%;">
+                <img src="assets/patterns/ic_step_lower_02.svg" alt="" style="display: block; width: 100%; height: 100%; object-fit: fill;">
+            </div>
+        </div>
+        <div class="pattern-item" style="position: absolute; top: 23.21%; right: 4.37%; bottom: 55.4%; left: 89.88%; opacity: 0.4;">
+            <div style="position: absolute; top: -0.96%; right: -1.12%; bottom: -0.55%; left: -1.12%;">
+                <img src="assets/patterns/ic_step_upper_03.svg" alt="" style="display: block; width: 100%; height: 100%; object-fit: fill;">
+            </div>
+        </div>
+        <div class="pattern-item" style="position: absolute; top: 36.86%; right: 0.37%; bottom: 41.75%; left: 93.88%; opacity: 0.4;">
+            <div style="position: absolute; top: -0.96%; right: -1.12%; bottom: -0.55%; left: -1.12%;">
+                <img src="assets/patterns/ic_step_upper_04.svg" alt="" style="display: block; width: 100%; height: 100%; object-fit: fill;">
+            </div>
+        </div>
+        <div class="pattern-item" style="position: absolute; top: -6.12%; right: 23.99%; bottom: 84.72%; left: 70.26%; opacity: 0.4;">
+            <div style="position: absolute; top: -0.55%; right: -1.12%; bottom: -0.96%; left: -1.12%;">
+                <img src="assets/patterns/ic_step_lower_03.svg" alt="" style="display: block; width: 100%; height: 100%; object-fit: fill;">
+            </div>
+        </div>
+        <div class="pattern-item" style="position: absolute; top: -0.64%; right: 27.94%; bottom: 79.25%; left: 66.31%; opacity: 0.4;">
+            <div style="position: absolute; top: -0.96%; right: -1.12%; bottom: -0.55%; left: -1.12%;">
+                <img src="assets/patterns/ic_step_upper_05.svg" alt="" style="display: block; width: 100%; height: 100%; object-fit: fill;">
+            </div>
+        </div>
+        <div class="pattern-item" style="position: absolute; top: 7.53%; right: 19.99%; bottom: 71.08%; left: 74.26%; opacity: 0.4;">
+            <div style="position: absolute; top: -0.55%; right: -1.12%; bottom: -0.96%; left: -1.12%;">
+                <img src="assets/patterns/ic_step_lower_04.svg" alt="" style="display: block; width: 100%; height: 100%; object-fit: fill;">
+            </div>
+        </div>
+        <div class="pattern-item" style="position: absolute; top: 13%; right: 23.94%; bottom: 65.6%; left: 70.3%; opacity: 0.4;">
+            <div style="position: absolute; top: -0.96%; right: -1.12%; bottom: -0.55%; left: -1.12%;">
+                <img src="assets/patterns/ic_step_upper_06.svg" alt="" style="display: block; width: 100%; height: 100%; object-fit: fill;">
+            </div>
+        </div>
+        <div class="pattern-item" style="position: absolute; top: 21.18%; right: 15.99%; bottom: 57.43%; left: 78.26%; opacity: 0.4;">
+            <div style="position: absolute; top: -0.55%; right: -1.12%; bottom: -0.96%; left: -1.12%;">
+                <img src="assets/patterns/ic_step_lower_05.svg" alt="" style="display: block; width: 100%; height: 100%; object-fit: fill;">
+            </div>
+        </div>
+        <div class="pattern-item" style="position: absolute; top: 26.65%; right: 19.94%; bottom: 51.95%; left: 74.3%; opacity: 0.4;">
+            <div style="position: absolute; top: -0.96%; right: -1.12%; bottom: -0.55%; left: -1.12%;">
+                <img src="assets/patterns/ic_step_upper_07.svg" alt="" style="display: block; width: 100%; height: 100%; object-fit: fill;">
+            </div>
+        </div>
+        <div class="pattern-item" style="position: absolute; top: 34.83%; right: 11.99%; bottom: 43.78%; left: 82.25%; opacity: 0.4;">
+            <div style="position: absolute; top: -0.55%; right: -1.12%; bottom: -0.96%; left: -1.12%;">
+                <img src="assets/patterns/ic_step_lower_06.svg" alt="" style="display: block; width: 100%; height: 100%; object-fit: fill;">
+            </div>
+        </div>
+        <div class="pattern-item" style="position: absolute; top: 40.3%; right: 15.95%; bottom: 38.31%; left: 78.3%; opacity: 0.4;">
+            <div style="position: absolute; top: -0.96%; right: -1.12%; bottom: -0.55%; left: -1.12%;">
+                <img src="assets/patterns/ic_step_upper_08.svg" alt="" style="display: block; width: 100%; height: 100%; object-fit: fill;">
+            </div>
+        </div>
+        <div class="pattern-item" style="position: absolute; top: 48.47%; right: 8%; bottom: 30.13%; left: 86.25%; opacity: 0.4;">
+            <div style="position: absolute; top: -0.55%; right: -1.12%; bottom: -0.96%; left: -1.12%;">
+                <img src="assets/patterns/ic_step_lower_07.svg" alt="" style="display: block; width: 100%; height: 100%; object-fit: fill;">
+            </div>
+        </div>
+        <div class="pattern-item" style="position: absolute; top: 53.95%; right: 11.95%; bottom: 24.66%; left: 82.3%; opacity: 0.4;">
+            <div style="position: absolute; top: -0.96%; right: -1.12%; bottom: -0.55%; left: -1.12%;">
+                <img src="assets/patterns/ic_step_upper_09.svg" alt="" style="display: block; width: 100%; height: 100%; object-fit: fill;">
+            </div>
+        </div>
+        <div class="pattern-item" style="position: absolute; top: 62.12%; right: 4%; bottom: 16.48%; left: 90.25%; opacity: 0.4;">
+            <div style="position: absolute; top: -0.55%; right: -1.12%; bottom: -0.96%; left: -1.12%;">
+                <img src="assets/patterns/ic_step_lower_08.svg" alt="" style="display: block; width: 100%; height: 100%; object-fit: fill;">
+            </div>
+        </div>
+        <div class="pattern-item" style="position: absolute; top: 67.6%; right: 7.95%; bottom: 11.01%; left: 86.3%; opacity: 0.4;">
+            <div style="position: absolute; top: -0.96%; right: -1.12%; bottom: -0.55%; left: -1.12%;">
+                <img src="assets/patterns/ic_step_upper_10.svg" alt="" style="display: block; width: 100%; height: 100%; object-fit: fill;">
+            </div>
+        </div>
+        <div class="pattern-item" style="position: absolute; top: 75.77%; right: 0; bottom: 2.83%; left: 94.25%; opacity: 0.4;">
+            <div style="position: absolute; top: -0.55%; right: -1.12%; bottom: -0.96%; left: -1.12%;">
+                <img src="assets/patterns/ic_step_lower_09.svg" alt="" style="display: block; width: 100%; height: 100%; object-fit: fill;">
+            </div>
+        </div>
+        <div class="pattern-item" style="position: absolute; top: 81.25%; right: 3.95%; bottom: -2.64%; left: 90.3%; opacity: 0.4;">
+            <div style="position: absolute; top: -0.96%; right: -1.12%; bottom: -0.55%; left: -1.12%;">
+                <img src="assets/patterns/ic_step_upper_11.svg" alt="" style="display: block; width: 100%; height: 100%; object-fit: fill;">
+            </div>
+        </div>
+        <div class="pattern-item" style="position: absolute; top: -2.67%; right: 39.57%; bottom: 81.28%; left: 54.68%; opacity: 0.4;">
+            <div style="position: absolute; top: -0.55%; right: -1.12%; bottom: -0.96%; left: -1.12%;">
+                <img src="assets/patterns/ic_step_lower_10.svg" alt="" style="display: block; width: 100%; height: 100%; object-fit: fill;">
+            </div>
+        </div>
+        <div class="pattern-item" style="position: absolute; top: 2.8%; right: 43.52%; bottom: 75.81%; left: 50.73%; opacity: 0.4;">
+            <div style="position: absolute; top: -0.96%; right: -1.12%; bottom: -0.55%; left: -1.12%;">
+                <img src="assets/patterns/ic_step_upper_12.svg" alt="" style="display: block; width: 100%; height: 100%; object-fit: fill;">
+            </div>
+        </div>
+        <div class="pattern-item" style="position: absolute; top: 10.98%; right: 35.57%; bottom: 67.63%; left: 58.68%; opacity: 0.4;">
+            <div style="position: absolute; top: -0.55%; right: -1.12%; bottom: -0.96%; left: -1.12%;">
+                <img src="assets/patterns/ic_step_lower_11.svg" alt="" style="display: block; width: 100%; height: 100%; object-fit: fill;">
+            </div>
+        </div>
+        <div class="pattern-item" style="position: absolute; top: 16.45%; right: 39.52%; bottom: 62.16%; left: 54.73%; opacity: 0.4;">
+            <div style="position: absolute; top: -0.96%; right: -1.12%; bottom: -0.55%; left: -1.12%;">
+                <img src="assets/patterns/ic_step_upper_13.svg" alt="" style="display: block; width: 100%; height: 100%; object-fit: fill;">
+            </div>
+        </div>
+        <div class="pattern-item" style="position: absolute; top: 24.62%; right: 31.57%; bottom: 53.98%; left: 62.68%; opacity: 0.4;">
+            <div style="position: absolute; top: -0.55%; right: -1.12%; bottom: -0.96%; left: -1.12%;">
+                <img src="assets/patterns/ic_step_lower_12.svg" alt="" style="display: block; width: 100%; height: 100%; object-fit: fill;">
+            </div>
+        </div>
+        <div class="pattern-item" style="position: absolute; top: 30.1%; right: 35.52%; bottom: 48.51%; left: 58.73%; opacity: 0.4;">
+            <div style="position: absolute; top: -0.96%; right: -1.12%; bottom: -0.55%; left: -1.12%;">
+                <img src="assets/patterns/ic_step_upper_14.svg" alt="" style="display: block; width: 100%; height: 100%; object-fit: fill;">
+            </div>
+        </div>
+        <div class="pattern-item" style="position: absolute; top: 38.27%; right: 27.57%; bottom: 40.34%; left: 66.68%; opacity: 0.4;">
+            <div style="position: absolute; top: -0.55%; right: -1.12%; bottom: -0.96%; left: -1.12%;">
+                <img src="assets/patterns/ic_step_lower_13.svg" alt="" style="display: block; width: 100%; height: 100%; object-fit: fill;">
+            </div>
+        </div>
+        <div class="pattern-item" style="position: absolute; top: 43.74%; right: 31.52%; bottom: 34.86%; left: 62.72%; opacity: 0.4;">
+            <div style="position: absolute; top: -0.96%; right: -1.12%; bottom: -0.55%; left: -1.12%;">
+                <img src="assets/patterns/ic_step_upper_15.svg" alt="" style="display: block; width: 100%; height: 100%; object-fit: fill;">
+            </div>
+        </div>
+        <div class="pattern-item" style="position: absolute; top: 51.92%; right: 23.57%; bottom: 26.69%; left: 70.68%; opacity: 0.4;">
+            <div style="position: absolute; top: -0.55%; right: -1.12%; bottom: -0.96%; left: -1.12%;">
+                <img src="assets/patterns/ic_step_lower_14.svg" alt="" style="display: block; width: 100%; height: 100%; object-fit: fill;">
+            </div>
+        </div>
+        <div class="pattern-item" style="position: absolute; top: 57.39%; right: 27.53%; bottom: 21.21%; left: 66.72%; opacity: 0.4;">
+            <div style="position: absolute; top: -0.96%; right: -1.12%; bottom: -0.55%; left: -1.12%;">
+                <img src="assets/patterns/ic_step_upper_16.svg" alt="" style="display: block; width: 100%; height: 100%; object-fit: fill;">
+            </div>
+        </div>
+        <div class="pattern-item" style="position: absolute; top: 65.57%; right: 19.57%; bottom: 13.04%; left: 74.67%; opacity: 0.4;">
+            <div style="position: absolute; top: -0.55%; right: -1.12%; bottom: -0.96%; left: -1.12%;">
+                <img src="assets/patterns/ic_step_lower_15.svg" alt="" style="display: block; width: 100%; height: 100%; object-fit: fill;">
+            </div>
+        </div>
+        <div class="pattern-item" style="position: absolute; top: 71.04%; right: 23.53%; bottom: 7.56%; left: 70.72%; opacity: 0.4;">
+            <div style="position: absolute; top: -0.96%; right: -1.12%; bottom: -0.55%; left: -1.12%;">
+                <img src="assets/patterns/ic_step_upper_17.svg" alt="" style="display: block; width: 100%; height: 100%; object-fit: fill;">
+            </div>
+        </div>
+        <div class="pattern-item" style="position: absolute; top: 79.22%; right: 15.58%; bottom: -0.61%; left: 78.67%; opacity: 0.4;">
+            <div style="position: absolute; top: -0.55%; right: -1.12%; bottom: -0.96%; left: -1.12%;">
+                <img src="assets/patterns/ic_step_lower_16.svg" alt="" style="display: block; width: 100%; height: 100%; object-fit: fill;">
+            </div>
+        </div>
+        <div class="pattern-item" style="position: absolute; top: 84.69%; right: 19.53%; bottom: -6.08%; left: 74.72%; opacity: 0.4;">
+            <div style="position: absolute; top: -0.96%; right: -1.12%; bottom: -0.55%; left: -1.12%;">
+                <img src="assets/patterns/ic_step_upper_18.svg" alt="" style="display: block; width: 100%; height: 100%; object-fit: fill;">
+            </div>
+        </div>
+        <div class="pattern-item" style="position: absolute; top: 0.77%; right: 55.14%; bottom: 77.84%; left: 39.1%; opacity: 0.4;">
+            <div style="position: absolute; top: -0.55%; right: -1.12%; bottom: -0.96%; left: -1.12%;">
+                <img src="assets/patterns/ic_step_lower_17.svg" alt="" style="display: block; width: 100%; height: 100%; object-fit: fill;">
+            </div>
+        </div>
+        <div class="pattern-item" style="position: absolute; top: 6.25%; right: 59.1%; bottom: 72.36%; left: 35.15%; opacity: 0.4;">
+            <div style="position: absolute; top: -0.96%; right: -1.12%; bottom: -0.55%; left: -1.12%;">
+                <img src="assets/patterns/ic_step_upper_19.svg" alt="" style="display: block; width: 100%; height: 100%; object-fit: fill;">
+            </div>
+        </div>
+        <div class="pattern-item" style="position: absolute; top: 14.42%; right: 51.15%; bottom: 64.19%; left: 43.1%; opacity: 0.4;">
+            <div style="position: absolute; top: -0.55%; right: -1.12%; bottom: -0.96%; left: -1.12%;">
+                <img src="assets/patterns/ic_step_lower_18.svg" alt="" style="display: block; width: 100%; height: 100%; object-fit: fill;">
+            </div>
+        </div>
+        <div class="pattern-item" style="position: absolute; top: 19.89%; right: 55.1%; bottom: 58.71%; left: 39.15%; opacity: 0.4;">
+            <div style="position: absolute; top: -0.96%; right: -1.12%; bottom: -0.55%; left: -1.12%;">
+                <img src="assets/patterns/ic_step_upper_20.svg" alt="" style="display: block; width: 100%; height: 100%; object-fit: fill;">
+            </div>
+        </div>
+        <div class="pattern-item" style="position: absolute; top: 33.54%; right: 51.1%; bottom: 45.07%; left: 43.15%; opacity: 0.4;">
+            <div style="position: absolute; top: -0.96%; right: -1.12%; bottom: -0.55%; left: -1.12%;">
+                <img src="assets/patterns/ic_step_upper_21.svg" alt="" style="display: block; width: 100%; height: 100%; object-fit: fill;">
+            </div>
+        </div>
+        <div class="pattern-item" style="position: absolute; top: 41.72%; right: 43.15%; bottom: 36.89%; left: 51.1%; opacity: 0.4;">
+            <div style="position: absolute; top: -0.55%; right: -1.12%; bottom: -0.96%; left: -1.12%;">
+                <img src="assets/patterns/ic_step_lower_19.svg" alt="" style="display: block; width: 100%; height: 100%; object-fit: fill;">
+            </div>
+        </div>
+        <div class="pattern-item" style="position: absolute; top: 47.19%; right: 47.1%; bottom: 31.42%; left: 47.15%; opacity: 0.4;">
+            <div style="position: absolute; top: -0.96%; right: -1.12%; bottom: -0.55%; left: -1.12%;">
+                <img src="assets/patterns/ic_step_upper_22.svg" alt="" style="display: block; width: 100%; height: 100%; object-fit: fill;">
+            </div>
+        </div>
+        <div class="pattern-item" style="position: absolute; top: 55.36%; right: 39.15%; bottom: 23.24%; left: 55.1%; opacity: 0.4;">
+            <div style="position: absolute; top: -0.55%; right: -1.12%; bottom: -0.96%; left: -1.12%;">
+                <img src="assets/patterns/ic_step_lower_20.svg" alt="" style="display: block; width: 100%; height: 100%; object-fit: fill;">
+            </div>
+        </div>
+        <div class="pattern-item" style="position: absolute; top: 60.84%; right: 43.1%; bottom: 17.77%; left: 51.15%; opacity: 0.4;">
+            <div style="position: absolute; top: -0.96%; right: -1.12%; bottom: -0.55%; left: -1.12%;">
+                <img src="assets/patterns/ic_step_upper_23.svg" alt="" style="display: block; width: 100%; height: 100%; object-fit: fill;">
+            </div>
+        </div>
+        <div class="pattern-item" style="position: absolute; top: 69.01%; right: 35.15%; bottom: 9.59%; left: 59.1%; opacity: 0.4;">
+            <div style="position: absolute; top: -0.55%; right: -1.12%; bottom: -0.96%; left: -1.12%;">
+                <img src="assets/patterns/ic_step_lower_21.svg" alt="" style="display: block; width: 100%; height: 100%; object-fit: fill;">
+            </div>
+        </div>
+        <div class="pattern-item" style="position: absolute; top: 74.49%; right: 39.1%; bottom: 4.12%; left: 55.14%; opacity: 0.4;">
+            <div style="position: absolute; top: -0.96%; right: -1.12%; bottom: -0.55%; left: -1.12%;">
+                <img src="assets/patterns/ic_step_upper_24.svg" alt="" style="display: block; width: 100%; height: 100%; object-fit: fill;">
+            </div>
+        </div>
+        <div class="pattern-item" style="position: absolute; top: 82.66%; right: 31.15%; bottom: -4.06%; left: 63.09%; opacity: 0.4;">
+            <div style="position: absolute; top: -0.55%; right: -1.12%; bottom: -0.96%; left: -1.12%;">
+                <img src="assets/patterns/ic_step_lower_22.svg" alt="" style="display: block; width: 100%; height: 100%; object-fit: fill;">
+            </div>
+        </div>
+        <div class="pattern-item" style="position: absolute; top: 4.21%; right: 70.72%; bottom: 74.39%; left: 23.53%; opacity: 0.4;">
+            <div style="position: absolute; top: -0.55%; right: -1.12%; bottom: -0.96%; left: -1.12%;">
+                <img src="assets/patterns/ic_step_lower_23.svg" alt="" style="display: block; width: 100%; height: 100%; object-fit: fill;">
+            </div>
+        </div>
+        <div class="pattern-item" style="position: absolute; top: 9.69%; right: 74.67%; bottom: 68.92%; left: 19.57%; opacity: 0.4;">
+            <div style="position: absolute; top: -0.96%; right: -1.12%; bottom: -0.55%; left: -1.12%;">
+                <img src="assets/patterns/ic_step_upper_25.svg" alt="" style="display: block; width: 100%; height: 100%; object-fit: fill;">
+            </div>
+        </div>
+        <div class="pattern-item" style="position: absolute; top: 17.86%; right: 66.72%; bottom: 60.74%; left: 27.53%; opacity: 0.4;">
+            <div style="position: absolute; top: -0.55%; right: -1.12%; bottom: -0.96%; left: -1.12%;">
+                <img src="assets/patterns/ic_step_lower_24.svg" alt="" style="display: block; width: 100%; height: 100%; object-fit: fill;">
+            </div>
+        </div>
+        <div class="pattern-item" style="position: absolute; top: 23.34%; right: 70.67%; bottom: 55.27%; left: 23.57%; opacity: 0.4;">
+            <div style="position: absolute; top: -0.96%; right: -1.12%; bottom: -0.55%; left: -1.12%;">
+                <img src="assets/patterns/ic_step_upper_26.svg" alt="" style="display: block; width: 100%; height: 100%; object-fit: fill;">
+            </div>
+        </div>
+        <div class="pattern-item" style="position: absolute; top: 31.51%; right: 62.72%; bottom: 47.1%; left: 31.52%; opacity: 0.4;">
+            <div style="position: absolute; top: -0.55%; right: -1.12%; bottom: -0.96%; left: -1.12%;">
+                <img src="assets/patterns/ic_step_lower_25.svg" alt="" style="display: block; width: 100%; height: 100%; object-fit: fill;">
+            </div>
+        </div>
+        <div class="pattern-item" style="position: absolute; top: 36.98%; right: 66.68%; bottom: 41.62%; left: 27.57%; opacity: 0.4;">
+            <div style="position: absolute; top: -0.96%; right: -1.12%; bottom: -0.55%; left: -1.12%;">
+                <img src="assets/patterns/ic_step_upper_27.svg" alt="" style="display: block; width: 100%; height: 100%; object-fit: fill;">
+            </div>
+        </div>
+        <div class="pattern-item" style="position: absolute; top: 45.16%; right: 58.73%; bottom: 33.45%; left: 35.52%; opacity: 0.4;">
+            <div style="position: absolute; top: -0.55%; right: -1.12%; bottom: -0.96%; left: -1.12%;">
+                <img src="assets/patterns/ic_step_lower_26.svg" alt="" style="display: block; width: 100%; height: 100%; object-fit: fill;">
+            </div>
+        </div>
+        <div class="pattern-item" style="position: absolute; top: 50.63%; right: 62.68%; bottom: 27.97%; left: 31.57%; opacity: 0.4;">
+            <div style="position: absolute; top: -0.96%; right: -1.12%; bottom: -0.55%; left: -1.12%;">
+                <img src="assets/patterns/ic_step_upper_28.svg" alt="" style="display: block; width: 100%; height: 100%; object-fit: fill;">
+            </div>
+        </div>
+        <div class="pattern-item" style="position: absolute; top: 58.81%; right: 54.73%; bottom: 19.8%; left: 39.52%; opacity: 0.4;">
+            <div style="position: absolute; top: -0.55%; right: -1.12%; bottom: -0.96%; left: -1.12%;">
+                <img src="assets/patterns/ic_step_lower_27.svg" alt="" style="display: block; width: 100%; height: 100%; object-fit: fill;">
+            </div>
+        </div>
+        <div class="pattern-item" style="position: absolute; top: 64.28%; right: 58.68%; bottom: 14.32%; left: 35.57%; opacity: 0.4;">
+            <div style="position: absolute; top: -0.96%; right: -1.12%; bottom: -0.55%; left: -1.12%;">
+                <img src="assets/patterns/ic_step_upper_29.svg" alt="" style="display: block; width: 100%; height: 100%; object-fit: fill;">
+            </div>
+        </div>
+        <div class="pattern-item" style="position: absolute; top: 72.46%; right: 50.73%; bottom: 6.15%; left: 43.52%; opacity: 0.4;">
+            <div style="position: absolute; top: -0.55%; right: -1.12%; bottom: -0.96%; left: -1.12%;">
+                <img src="assets/patterns/ic_step_lower_28.svg" alt="" style="display: block; width: 100%; height: 100%; object-fit: fill;">
+            </div>
+        </div>
+        <div class="pattern-item" style="position: absolute; top: 77.93%; right: 54.68%; bottom: 0.67%; left: 39.57%; opacity: 0.4;">
+            <div style="position: absolute; top: -0.96%; right: -1.12%; bottom: -0.55%; left: -1.12%;">
+                <img src="assets/patterns/ic_step_upper_30.svg" alt="" style="display: block; width: 100%; height: 100%; object-fit: fill;">
+            </div>
+        </div>
+        <div class="pattern-item" style="position: absolute; top: -5.99%; right: 90.3%; bottom: 84.6%; left: 3.95%; opacity: 0.4;">
+            <div style="position: absolute; top: -0.55%; right: -1.12%; bottom: -0.96%; left: -1.12%;">
+                <img src="assets/patterns/ic_step_lower_29.svg" alt="" style="display: block; width: 100%; height: 100%; object-fit: fill;">
+            </div>
+        </div>
+        <div class="pattern-item" style="position: absolute; top: -0.52%; right: 94.25%; bottom: 79.12%; left: 0; opacity: 0.4;">
+            <div style="position: absolute; top: -0.96%; right: -1.12%; bottom: -0.55%; left: -1.12%;">
+                <img src="assets/patterns/ic_step_upper_31.svg" alt="" style="display: block; width: 100%; height: 100%; object-fit: fill;">
+            </div>
+        </div>
+        <div class="pattern-item" style="position: absolute; top: 7.66%; right: 86.3%; bottom: 70.95%; left: 7.95%; opacity: 0.4;">
+            <div style="position: absolute; top: -0.55%; right: -1.12%; bottom: -0.96%; left: -1.12%;">
+                <img src="assets/patterns/ic_step_lower_30.svg" alt="" style="display: block; width: 100%; height: 100%; object-fit: fill;">
+            </div>
+        </div>
+        <div class="pattern-item" style="position: absolute; top: 13.13%; right: 90.25%; bottom: 65.47%; left: 4%; opacity: 0.4;">
+            <div style="position: absolute; top: -0.96%; right: -1.12%; bottom: -0.55%; left: -1.12%;">
+                <img src="assets/patterns/ic_step_upper_32.svg" alt="" style="display: block; width: 100%; height: 100%; object-fit: fill;">
+            </div>
+        </div>
+        <div class="pattern-item" style="position: absolute; top: 21.31%; right: 82.3%; bottom: 57.3%; left: 11.95%; opacity: 0.4;">
+            <div style="position: absolute; top: -0.55%; right: -1.12%; bottom: -0.96%; left: -1.12%;">
+                <img src="assets/patterns/ic_step_lower_31.svg" alt="" style="display: block; width: 100%; height: 100%; object-fit: fill;">
+            </div>
+        </div>
+        <div class="pattern-item" style="position: absolute; top: 26.78%; right: 86.25%; bottom: 51.83%; left: 8%; opacity: 0.4;">
+            <div style="position: absolute; top: -0.96%; right: -1.12%; bottom: -0.55%; left: -1.12%;">
+                <img src="assets/patterns/ic_step_upper_33.svg" alt="" style="display: block; width: 100%; height: 100%; object-fit: fill;">
+            </div>
+        </div>
+        <div class="pattern-item" style="position: absolute; top: 34.96%; right: 78.3%; bottom: 43.65%; left: 15.95%; opacity: 0.4;">
+            <div style="position: absolute; top: -0.55%; right: -1.12%; bottom: -0.96%; left: -1.12%;">
+                <img src="assets/patterns/ic_step_lower_32.svg" alt="" style="display: block; width: 100%; height: 100%; object-fit: fill;">
+            </div>
+        </div>
+        <div class="pattern-item" style="position: absolute; top: 40.43%; right: 82.25%; bottom: 38.18%; left: 11.99%; opacity: 0.4;">
+            <div style="position: absolute; top: -0.96%; right: -1.12%; bottom: -0.55%; left: -1.12%;">
+                <img src="assets/patterns/ic_step_upper_34.svg" alt="" style="display: block; width: 100%; height: 100%; object-fit: fill;">
+            </div>
+        </div>
+        <div class="pattern-item" style="position: absolute; top: 48.6%; right: 74.3%; bottom: 30%; left: 19.94%; opacity: 0.4;">
+            <div style="position: absolute; top: -0.55%; right: -1.12%; bottom: -0.96%; left: -1.12%;">
+                <img src="assets/patterns/ic_step_lower_33.svg" alt="" style="display: block; width: 100%; height: 100%; object-fit: fill;">
+            </div>
+        </div>
+        <div class="pattern-item" style="position: absolute; top: 54.08%; right: 78.25%; bottom: 24.53%; left: 15.99%; opacity: 0.4;">
+            <div style="position: absolute; top: -0.96%; right: -1.12%; bottom: -0.55%; left: -1.12%;">
+                <img src="assets/patterns/ic_step_upper_35.svg" alt="" style="display: block; width: 100%; height: 100%; object-fit: fill;">
+            </div>
+        </div>
+        <div class="pattern-item" style="position: absolute; top: 62.25%; right: 70.3%; bottom: 16.35%; left: 23.94%; opacity: 0.4;">
+            <div style="position: absolute; top: -0.55%; right: -1.12%; bottom: -0.96%; left: -1.12%;">
+                <img src="assets/patterns/ic_step_lower_34.svg" alt="" style="display: block; width: 100%; height: 100%; object-fit: fill;">
+            </div>
+        </div>
+        <div class="pattern-item" style="position: absolute; top: 67.73%; right: 74.26%; bottom: 10.88%; left: 19.99%; opacity: 0.4;">
+            <div style="position: absolute; top: -0.96%; right: -1.12%; bottom: -0.55%; left: -1.12%;">
+                <img src="assets/patterns/ic_step_upper_36.svg" alt="" style="display: block; width: 100%; height: 100%; object-fit: fill;">
+            </div>
+        </div>
+        <div class="pattern-item" style="position: absolute; top: 75.9%; right: 66.31%; bottom: 2.71%; left: 27.94%; opacity: 0.4;">
+            <div style="position: absolute; top: -0.55%; right: -1.12%; bottom: -0.96%; left: -1.12%;">
+                <img src="assets/patterns/ic_step_lower_35.svg" alt="" style="display: block; width: 100%; height: 100%; object-fit: fill;">
+            </div>
+        </div>
+        <div class="pattern-item" style="position: absolute; top: 81.37%; right: 70.26%; bottom: -2.77%; left: 23.99%; opacity: 0.4;">
+            <div style="position: absolute; top: -0.96%; right: -1.12%; bottom: -0.55%; left: -1.12%;">
+                <img src="assets/patterns/ic_step_upper_37.svg" alt="" style="display: block; width: 100%; height: 100%; object-fit: fill;">
+            </div>
+        </div>
+        <div class="pattern-item" style="position: absolute; top: 38.4%; right: 93.88%; bottom: 40.21%; left: 0.37%; opacity: 0.4;">
+            <div style="position: absolute; top: -0.55%; right: -1.12%; bottom: -0.96%; left: -1.12%;">
+                <img src="assets/patterns/ic_step_lower_36.svg" alt="" style="display: block; width: 100%; height: 100%; object-fit: fill;">
+            </div>
+        </div>
+        <div class="pattern-item" style="position: absolute; top: 52.05%; right: 89.88%; bottom: 26.56%; left: 4.37%; opacity: 0.4;">
+            <div style="position: absolute; top: -0.55%; right: -1.12%; bottom: -0.96%; left: -1.12%;">
+                <img src="assets/patterns/ic_step_lower_37.svg" alt="" style="display: block; width: 100%; height: 100%; object-fit: fill;">
+            </div>
+        </div>
+        <div class="pattern-item" style="position: absolute; top: 57.52%; right: 93.83%; bottom: 21.08%; left: 0.42%; opacity: 0.4;">
+            <div style="position: absolute; top: -0.96%; right: -1.12%; bottom: -0.55%; left: -1.12%;">
+                <img src="assets/patterns/ic_step_upper_38.svg" alt="" style="display: block; width: 100%; height: 100%; object-fit: fill;">
+            </div>
+        </div>
+        <div class="pattern-item" style="position: absolute; top: 65.7%; right: 85.88%; bottom: 12.91%; left: 8.37%; opacity: 0.4;">
+            <div style="position: absolute; top: -0.55%; right: -1.12%; bottom: -0.96%; left: -1.12%;">
+                <img src="assets/patterns/ic_step_lower_38.svg" alt="" style="display: block; width: 100%; height: 100%; object-fit: fill;">
+            </div>
+        </div>
+        <div class="pattern-item" style="position: absolute; top: 71.17%; right: 89.83%; bottom: 7.44%; left: 4.41%; opacity: 0.4;">
+            <div style="position: absolute; top: -0.96%; right: -1.12%; bottom: -0.55%; left: -1.12%;">
+                <img src="assets/patterns/ic_step_upper_39.svg" alt="" style="display: block; width: 100%; height: 100%; object-fit: fill;">
+            </div>
+        </div>
+        <div class="pattern-item" style="position: absolute; top: 79.34%; right: 81.88%; bottom: -0.74%; left: 12.36%; opacity: 0.4;">
+            <div style="position: absolute; top: -0.55%; right: -1.12%; bottom: -0.96%; left: -1.12%;">
+                <img src="assets/patterns/ic_step_lower_39.svg" alt="" style="display: block; width: 100%; height: 100%; object-fit: fill;">
+            </div>
+        </div>
+        <div class="pattern-item" style="position: absolute; top: 84.82%; right: 85.84%; bottom: -6.21%; left: 8.41%; opacity: 0.4;">
+            <div style="position: absolute; top: -0.96%; right: -1.12%; bottom: -0.55%; left: -1.12%;">
+                <img src="assets/patterns/ic_step_upper_40.svg" alt="" style="display: block; width: 100%; height: 100%; object-fit: fill;">
+            </div>
+        </div>
+        </div>
+        
+        <!-- Logo and Interactive Progress Circle -->
+        <div class="interactive-hold-wrapper" id="hold-button-area">
+            <svg class="progress-ring" width="180" height="180">
+                <circle class="progress-ring-track" cx="90" cy="90" r="76" />
+                <circle class="progress-ring-fill" id="progress-circle" cx="90" cy="90" r="76" stroke-dasharray="477.52" stroke-dashoffset="477.52" />
+            </svg>
+            <div class="logo-emblem-center">
+                <img src="assets/icon/logo.svg" alt="Taj Holding Group Logo" class="emblem-img">
+            </div>
+        </div>
+        
+        <!-- Text Indicator -->
+        <div class="hold-indicator-text" id="hold-instruction" data-en="Hold to Enter" data-ar="اضغط مطولاً للدخول">Hold to Enter</div>
+    </main>
+
+    <!-- 2. Main Content Page (Hero Section) -->
+    <div id="main-content" class="main-layout hidden">
+        <section class="hero-fullpage-section" id="hero-scroll-container">
+            <div class="hero-sticky-wrapper">
+                <!-- Background Hero Video/Image -->
+                <div class="hero-bg-wrapper">
+                    <!-- SVG Filter to key out white background -->
+                    <svg width="0" height="0" style="position: absolute; pointer-events: none;">
+                        <defs>
+                            <filter id="remove-white-bg">
+                                <feColorMatrix 
+                                    type="matrix" 
+                                    values="1 0 0 0 0
+                                            0 1 0 0 0
+                                            0 0 1 0 0
+                                            -1 -1 -1 3 0" />
+                            </filter>
+                        </defs>
+                    </svg>
+                    <video id="hero-video" class="hero-bg-video" src="assets/video/hero_scroll.mp4" preload="auto" muted playsinline></video>
+                    <img src="assets/image/hero%20image%20.png" alt="Taj Holding Group background featuring 3D golden coin" class="hero-bg-img" id="hero-bg-img">
+                    <div class="hero-radial-shade"></div>
+                </div>
+
+                <!-- Premium Header Navigation -->
+                <header class="main-header">
+                    <!-- Brand Logo -->
+                    <div class="header-logo" id="header-logo">
+                        <img src="assets/icon/logo hero.svg" alt="Taj Holding Group Logo" class="logo-hero-img">
+                    </div>
+
+                    <!-- Toolbar Actions -->
+                    <div class="header-actions">
+                        <!-- Theme Toggle -->
+                        <button class="action-btn" id="theme-toggle" aria-label="Toggle Theme">
+                            <span class="btn-bg"></span>
+                            <img src="assets/icon/theme.svg" alt="Theme icon" class="action-icon">
+                        </button>
+                        <!-- Language Toggle -->
+                        <button class="action-btn" id="lang-toggle" aria-label="Switch Language">
+                            <span class="btn-bg"></span>
+                            <img src="assets/icon/language.svg" alt="Language icon" class="action-icon">
+                        </button>
+                        <!-- Hamburger Menu -->
+                        <button class="action-btn" id="menu-toggle" aria-label="Open Menu">
+                            <span class="btn-bg"></span>
+                            <img src="assets/icon/menu.svg" alt="Menu icon" class="action-icon">
+                        </button>
+                    </div>
+                </header>
+
+                <!-- Main Hero Details -->
+                <section class="hero-section">
+                    <div class="hero-content">
+                        <span class="sub-headline" id="hero-sub-headline" data-en="BUILDING ENDURING VALUE" data-ar="بناء قيمة مستدامة">BUILDING ENDURING VALUE</span>
+                        <h1 class="main-headline" id="hero-headline">
+                            <span data-en="A Legacy Of " data-ar="إرث من ">A Legacy Of </span><br>
+                            <span class="accent-text" data-en="Vision & Growth" data-ar="الرؤية والنمو">Vision & Growth</span>
+                        </h1>
+                        <p class="hero-desc" id="hero-description" data-en="Aurelian Holdings is a diversified investment company focused on building and scaling exceptional businesses across industries and generations." data-ar="مجموعة تاج القابضة هي شركة استثمارية متنوعة تركز على بناء وتوسيع نطاق الأعمال الاستثنائية عبر مختلف القطاعات والأجيال.">
+                            Aurelian Holdings is a diversified investment company focused on building and scaling exceptional businesses across industries and generations.
+                        </p>
+                        <a href="#invest" class="cta-btn" id="hero-cta">
+                            <span class="cta-text" data-en="Invest With Us" data-ar="استثمر معنا">Invest With Us</span>
+                            <span class="cta-arrow-wrapper">
+                                <img src="assets/icon/arrow-up.svg" alt="Arrow icon" class="cta-arrow">
+                            </span>
+                        </a>
+                    </div>
+                </section>
+
+                <!-- Premium Footer Controls -->
+                <footer class="main-footer">
+                    <!-- Scroll Indicator -->
+                    <div class="footer-control scroll-explore" id="scroll-explore-btn">
+                        <div class="scroll-mouse-icon">
+                            <img src="assets/icon/scroll-down.svg" alt="Scroll Down Icon" class="mouse-svg">
+                        </div>
+                        <span class="footer-text" id="footer-scroll-text" data-en="SCROLL TO EXPLORE" data-ar="مرر للاستكشاف">SCROLL TO EXPLORE</span>
+                    </div>
+
+                    <!-- Video Play Controller -->
+                    <div class="footer-control watch-story" id="play-story-btn">
+                        <div class="play-icon-wrapper">
+                            <img src="assets/icon/play.svg" alt="Play Icon" class="play-svg">
+                        </div>
+                        <span class="footer-text" id="footer-play-text" data-en="WATCH OUR STORY" data-ar="شاهد قصتنا">WATCH OUR STORY</span>
+                    </div>
+                </footer>
+            </div>
+        </section>
+
+        <!-- 1. Statement Section -->
+        <section class="statement-section" id="statement-sec">
+            <div class="statement-container">
+                <div class="star-wrapper">
+                    <div class="star-spin-container">
+                        <img src="assets/icon/star.svg" alt="Star" class="statement-star-icon">
+                    </div>
+                </div>
+                <div class="statement-text-wrapper">
+                    <p class="statement-text" id="reveal-paragraph" 
+                       data-en="Rooted in a legacy of excellence and guided by a bold vision for the future, TAJ Holding Group transcends traditional investment. We identify untapped potential and fuel it with strategic foresight, transforming visionary concepts into tangible, global growth. We build resilient ecosystems designed to shape tomorrow." 
+                       data-ar="تنطلق فلسفتنا في مجموعة تاج القابضة من إيمان راسخ بأن الاستثمار الحقيقي يتجاوز التمويل التقليدي؛ ليكون استثماراً في المستقبل. نحن نكتشف الإمكانات الكامنة ونوجهها برؤية استراتيجية ثاقبة، لنحول الأفكار الطموحة إلى نمو عالمي ملموس ومستدام. نحن نبني كيانات اقتصادية راسخة، مصممة لصناعة الغد.">
+                        Rooted in a legacy of excellence and guided by a bold vision for the future, TAJ Holding Group transcends traditional investment. We identify untapped potential and fuel it with strategic foresight, transforming visionary concepts into tangible, global growth. We build resilient ecosystems designed to shape tomorrow.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Slideshow Section -->
+        <section class="slideshow-section" id="slideshow-sec">
+            <div class="slideshow-container" id="slideshow-container">
+                <!-- Left Column: Layered Images & Progress Bar -->
+                <div class="slides-image-wrapper">
+                    <div class="slides-images">
+                        <img src="assets/image/slideshow-river.png" alt="Energy & Petroleum" class="slide-img active">
+                        <img src="assets/image/slideshow-golf.png" alt="Real Estate & Infrastructure" class="slide-img">
+                        <img src="assets/image/slideshow-downtown.png" alt="Technology & Innovation" class="slide-img">
+                        <img src="assets/image/slideshow-river.png" alt="Retail & Consumer Goods" class="slide-img">
+                        <img src="assets/image/slideshow-golf.png" alt="Food & Beverage" class="slide-img">
+                        <img src="assets/image/slideshow-downtown.png" alt="Defense & Security" class="slide-img">
+                    </div>
+                    <!-- Single progress bar instead of segments -->
+                    <div class="slideshow-progress-bar-container">
+                        <div class="slideshow-progress-bar-fill" id="slideshow-progress-fill"></div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Interactive Text Box -->
+                <div class="slides-text-wrapper">
+                    <div class="slides-text-content" id="slides-text-box">
+                        <span class="slide-tag" id="slide-tag" data-en="SECTOR 01" data-ar="القطاع 01">SECTOR 01</span>
+                        <h2 class="slide-title" id="slide-title" data-en="Energy & Petroleum." data-ar="الطاقة والبترول.">Energy & Petroleum.</h2>
+                        <p class="slide-desc" id="slide-desc" 
+                           data-en="Powering the future with sustainable and innovative energy solutions that drive global industrial progress." 
+                           data-ar="تزويد المستقبل بحلول طاقة مستدامة ومبتكرة تدفع عجلة التقدم الصناعي العالمي.">
+                            Powering the future with sustainable and innovative energy solutions that drive global industrial progress.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Milestones Timeline Section -->
+        <section class="timeline-section" id="timeline-sec">
+            <div class="timeline-container">
+                <div class="timeline-header">
+                    <h2 class="timeline-heading" data-en="Milestones that built our legacy" data-ar="محطات بارزة بنت إرثنا">Milestones that built our legacy</h2>
+                    <div class="vision-2030-wrapper">
+                        <img src="assets/image/2030.png" alt="Saudi Vision 2030" class="vision-2030-logo">
+                    </div>
+                </div>
+
+                <!-- Range Slider Area -->
+                <div class="timeline-slider-wrapper">
+                    <div class="timeline-slider-track-container" id="slider-track-container">
+                        <input type="range" id="timeline-range-slider" min="0" max="7" value="0" class="timeline-native-input">
+                        <div class="timeline-custom-track">
+                            <div class="timeline-custom-fill" id="custom-slider-fill"></div>
+                            <!-- Years markers (ticks) -->
+                            <div class="timeline-custom-ticks" id="slider-ticks-container"></div>
+                        </div>
+                    </div>
+                    <!-- Year Labels mapped below ticks -->
+                    <div class="timeline-year-labels" id="timeline-year-labels"></div>
+                </div>
+
+                <!-- Horizontal scrollable timeline card deck -->
+                <div class="timeline-cards-wrapper">
+                    <button class="timeline-arrow-btn prev" id="slider-prev-btn" aria-label="Previous">
+                        <svg viewBox="0 0 8 12" class="arrow-svg"><path d="M7 1L2 6l5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </button>
+                    
+                    <div class="timeline-cards-viewport" id="timeline-viewport">
+                        <div class="timeline-cards-inner" id="timeline-cards-inner">
+                            <!-- Cards will be populated dynamically by index.js -->
+                        </div>
+                    </div>
+
+                    <button class="timeline-arrow-btn next" id="slider-next-btn" aria-label="Next">
+                        <svg viewBox="0 0 8 12" class="arrow-svg"><path d="M1 1l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Blog (formerly The Bend Club) Section -->
+        <section class="blog-section" id="blog-sec">
+            <div class="blog-container">
+                <h2 class="blog-heading" data-en="Media & Insights." data-ar="المركز الإعلامي والرؤى.">Media & Insights.</h2>
+                <div class="blog-grid">
+                    <!-- Card 1 -->
+                    <article class="blog-card">
+                        <div class="blog-card-img-wrapper">
+                            <img src="assets/image/blog-residences.png" alt="Corporate News" class="blog-card-img">
+                        </div>
+                        <div class="blog-card-meta">
+                            <span class="blog-card-category" data-en="CORPORATE NEWS" data-ar="أخبار الشركة">CORPORATE NEWS</span>
+                            <h3 class="blog-card-title" data-en="TAJ Holding Announces Strategic Expansion into Emerging Tech Markets." data-ar="مجموعة تاج القابضة تعلن عن توسعها الاستراتيجي في أسواق التكنولوجيا الناشئة.">TAJ Holding Announces Strategic Expansion into Emerging Tech Markets.</h3>
+                        </div>
+                    </article>
+
+                    <!-- Card 2 -->
+                    <article class="blog-card">
+                        <div class="blog-card-img-wrapper">
+                            <img src="assets/image/blog-concierge.png" alt="Sustainability" class="blog-card-img">
+                        </div>
+                        <div class="blog-card-meta">
+                            <span class="blog-card-category" data-en="SUSTAINABILITY" data-ar="الاستدامة">SUSTAINABILITY</span>
+                            <h3 class="blog-card-title" data-en="Pioneering Green Energy: New Initiatives Shaping Our 2026 Portfolio." data-ar="ريادة الطاقة الخضراء: مبادرات جديدة ترسم ملامح محفظتنا لعام 2026.">Pioneering Green Energy: New Initiatives Shaping Our 2026 Portfolio.</h3>
+                        </div>
+                    </article>
+
+                    <!-- Card 3 -->
+                    <article class="blog-card">
+                        <div class="blog-card-img-wrapper">
+                            <img src="assets/image/blog-lifestyle.png" alt="Market Insights" class="blog-card-img">
+                        </div>
+                        <div class="blog-card-meta">
+                            <span class="blog-card-category" data-en="MARKET INSIGHTS" data-ar="رؤى السوق">MARKET INSIGHTS</span>
+                            <h3 class="blog-card-title" data-en="How Vision 2030 is Redefining Global Investment Strategies." data-ar="كيف تعيد &quot;رؤية 2030&quot; صياغة استراتيجيات الاستثمار العالمية.">How Vision 2030 is Redefining Global Investment Strategies.</h3>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Premium Footer Form Section -->
+        <section class="site-footer-section" id="footer-sec">
+            <div class="footer-card-container">
+                <div class="footer-card-inner">
+                    <!-- Left: Address & Inquiries info -->
+                    <div class="footer-info-panel">
+                        <span class="footer-inquiries-label" data-en="[Inquiries]" data-ar="[استفسارات]">[Inquiries]</span>
+                        <h2 class="footer-info-heading" data-en="Partnering for global impact." data-ar="شراكةٌ من أجل تأثيرٍ عالمي.">Partnering for global impact.</h2>
+                        <p class="footer-info-desc" data-en="Reach out to explore strategic partnerships, investment opportunities, or media relations. Our dedicated team is here to shape the next chapter of growth with you." data-ar="تواصل معنا لاستكشاف الشراكات الاستراتيجية، الفرص الاستثمارية، أو العلاقات الإعلامية. فريقنا مستعد لبناء فصل جديد من النجاح والنمو معك.">
+                            Reach out to explore strategic partnerships, investment opportunities, or media relations. Our dedicated team is here to shape the next chapter of growth with you.
+                        </p>
+                        <div class="footer-address-divider"></div>
+                        <div class="footer-address-info">
+                            <span class="address-title" data-en="WHERE" data-ar="المقر">WHERE</span>
+                            <span class="address-details" data-en="Global Headquarters, Riyadh, Kingdom of Saudi Arabia." data-ar="المقر الرئيسي، الرياض، المملكة العربية السعودية.">Global Headquarters, Riyadh, Kingdom of Saudi Arabia.</span>
+                        </div>
+                    </div>
+
+                    <!-- Right: Interactive Contact Form -->
+                    <form class="footer-form-panel" id="contact-form">
+                        <div class="form-row-double">
+                            <div class="form-group">
+                                <label for="first-name" class="form-label" data-en="First Name" data-ar="الاسم الأول">First Name</label>
+                                <input type="text" id="first-name" name="firstName" class="form-input" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="last-name" class="form-label" data-en="Last Name" data-ar="اسم العائلة">Last Name</label>
+                                <input type="text" id="last-name" name="lastName" class="form-input" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="form-label" data-en="Email Address" data-ar="البريد الإلكتروني">Email Address</label>
+                            <input type="email" id="email" name="email" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message" class="form-label" data-en="Inquiry Details" data-ar="تفاصيل الاستفسار">Inquiry Details</label>
+                            <textarea id="message" name="message" class="form-input text-area" required></textarea>
+                        </div>
+
+                        <div class="form-submit-row">
+                            <button type="submit" class="form-submit-btn">
+                                <span class="submit-text" data-en="SEND INQUIRY" data-ar="إرسال الطلب">SEND INQUIRY</span>
+                                <span class="submit-arrow">⟶</span>
+                            </button>
+                            <span class="submit-note" data-en="Our team will respond within two business days." data-ar="سيقوم فريقنا بالرد خلال يومي عمل.">Our team will respond within two business days.</span>
+                        </div>
+                    </form>
+                </div>
+
+            <!-- Full-width Bottom Footer Bar -->
+            <div class="footer-bottom-bar" translate="no">
+                <div class="footer-bottom-left">
+                    <span class="footer-copyright" data-en="© 2026 TAJ Holding Group. All rights reserved." data-ar="© 2026 مجموعة تاج القابضة. جميع الحقوق محفوظة.">© 2026 TAJ Holding Group. All rights reserved.</span>
+                    <div class="footer-bottom-links">
+                        <a href="#terms" class="footer-bottom-link" data-en="Terms of Service" data-ar="شروط الخدمة">Terms of Service</a>
+                        <a href="#privacy" class="footer-bottom-link" data-en="Privacy Policy" data-ar="سياسة الخصوصية">Privacy Policy</a>
+                        <a href="#support" class="footer-bottom-link" data-en="Support" data-ar="الدعم">Support</a>
+                    </div>
+                </div>
+                
+                <!-- Social Media List -->
+                <ul class="footer-social-list">
+                    <li>
+                        <a href="#twitter" class="footer-social-link" aria-label="X (Twitter)">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#instagram" class="footer-social-link" aria-label="Instagram">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                            </svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#linkedin" class="footer-social-link" aria-label="LinkedIn">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0z"/>
+                            </svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#telegram" class="footer-social-link" aria-label="Telegram">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M11.944 0C5.344 0 0 5.344 0 12c0 6.656 5.344 12 12 12 6.656 0 12-5.344 12-12C24 5.344 18.656 0 12.056 0zM18.672 8.256l-2.224 10.464c-.16.736-.608.912-1.216.56l-3.392-2.512-1.632 1.584c-.176.176-.32.32-.656.32l.24-3.44 6.256-5.648c.272-.24-.064-.368-.416-.128L8.192 13.52 4.864 12.48c-.72-.224-.736-.72.16-.1072L18.064 7.36c.608-.224 1.136.144.608.896z"/>
+                            </svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#medium" class="footer-social-link" aria-label="Medium">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zm7.42 0c0 3.54-1.51 6.42-3.38 6.42s-3.38-2.88-3.38-6.42 1.51-6.42 3.38-6.42 3.38 2.88 3.38 6.42zm3.04 0c0 3.24-.31 5.86-.7 5.86s-.7-2.62-.7-5.86.31-5.86.7-5.86.7 2.62.7 5.86z"/>
+                            </svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#discord" class="footer-social-link" aria-label="Discord">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M20.317 4.37a19.791 19.791 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.617-1.25.077.077 0 00-.079-.037A19.736 19.736 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.094 13.094 0 01-1.873-.894.077.077 0 01-.008-.128c.126-.093.252-.19.372-.287a.075.075 0 01.077-.011c3.92 1.793 8.18 1.793 12.061 0a.075.075 0 01.077-.011c.12.099.246.195.373.289a.077.077 0 01-.006.127 12.299 12.299 0 01-1.873.894.077.077 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.839 19.839 0 006.002-3.03.077.077 0 00.032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 00-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.156-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.156 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.156-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.156 2.418z"/>
+                            </svg>
+                        </a>
+                </ul>
+            </div>
+        </div>
+    </section>
+    </div>
+
+    <!-- Interactive Navigation Overlay -->
+    <div id="navigation-overlay" class="nav-overlay hidden">
+        <button class="close-overlay-btn" id="close-menu" aria-label="Close Menu">&times;</button>
+        <nav class="overlay-nav-links">
+            <a href="#home" class="nav-link active" data-en="Home" data-ar="الرئيسية">Home</a>
+            <a href="#about" class="nav-link" data-en="About Us" data-ar="من نحن">About Us</a>
+            <a href="#portfolio" class="nav-link" data-en="Our Portfolio" data-ar="محفظتنا">Our Portfolio</a>
+            <a href="#investment" class="nav-link" data-en="Investments" data-ar="الاستثمارات">Investments</a>
+            <a href="#contact" class="nav-link" data-en="Contact Us" data-ar="اتصل بنا">Contact Us</a>
+        </nav>
+    </div>
+
+    <!-- Script File -->
+    <script src="index.js?v=2.0"></script>
+</body>
+</html>
