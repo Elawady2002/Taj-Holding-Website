@@ -1531,47 +1531,62 @@ body.entered .main-layout {
 .form-submit-row {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
     margin-top: 16px;
 }
 
 .form-submit-btn {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 12px;
-    background: transparent;
-    border: none;
+    background: #c5ab63;
+    border: 1px solid #c5ab63;
+    border-radius: 30px;
+    padding: 12px 28px;
     cursor: pointer;
     outline: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 15px rgba(197, 171, 99, 0.15);
 }
 
 .submit-text {
-    font-size: 14px;
-    font-weight: 600;
-    letter-spacing: 0.2em;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: #ffffff;
+    color: #000000;
     transition: color 0.3s ease;
 }
 
-.submit-arrow {
-    font-size: 16px;
-    color: #ffffff;
+.submit-arrow-svg {
+    width: 16px;
+    height: 16px;
+    color: #000000;
     transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.form-submit-btn:hover {
+    background: transparent;
+    border-color: #c5ab63;
+    box-shadow: 0 6px 20px rgba(197, 171, 99, 0.25);
+    transform: translateY(-2px);
 }
 
 .form-submit-btn:hover .submit-text {
     color: #c5ab63;
 }
 
-.form-submit-btn:hover .submit-arrow {
+.form-submit-btn:hover .submit-arrow-svg {
     color: #c5ab63;
-    transform: translateX(6px);
+    transform: translateX(4px);
 }
 
 .submit-note {
     font-size: 12px;
     color: rgba(255, 255, 255, 0.55);
+    margin-top: 16px;
+    display: block;
 }
 
 .footer-bottom-bar {
