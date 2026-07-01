@@ -96,16 +96,9 @@ document.addEventListener("DOMContentLoaded", () => {
             const endX = cx + Math.cos(finalAngle) * endR;
             const endY = cy + Math.sin(finalAngle) * endR;
             
-            // Proximity focus lighting effect near mouse angle
-            const focus = Math.max(0, 1 - diff / 0.15) * (mouse.active ? Math.min(1.5, mouseDist / 200) : 0);
-            
             // Base opacities for shadow and highlight to look like subtle stone cracks
-            const shadowBaseAlpha = isLightMode ? 0.08 : 0.45;
-            const highlightBaseAlpha = isLightMode ? 0.45 : 0.06;
-            
-            // Scale opacity with focus
-            const shadowAlpha = shadowBaseAlpha + (isLightMode ? focus * 0.08 : focus * 0.15);
-            const highlightAlpha = highlightBaseAlpha + (isLightMode ? focus * 0.22 : focus * 0.06);
+            const shadowAlpha = isLightMode ? 0.08 : 0.45;
+            const highlightAlpha = isLightMode ? 0.45 : 0.06;
             
             const baseWidth = i % 6 === 0 ? 1.2 : 0.6;
             
