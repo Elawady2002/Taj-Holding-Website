@@ -5,7 +5,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     // --- DOM Elements ---
     const canvas = document.getElementById("bg-canvas");
-    const mouseGlow = document.getElementById("mouse-glow");
     const themeToggle = document.getElementById("theme-toggle");
     const langToggle = document.getElementById("lang-toggle");
     const langLabel = document.getElementById("lang-label");
@@ -24,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (themeToggle) {
         themeToggle.classList.add("active");
     }
-    let mouse = { x: 0, y: 0, active: false };
+
 
     // --- Three.js WebGL Setup ---
     if (canvas) {
@@ -120,15 +119,14 @@ document.addEventListener("DOMContentLoaded", () => {
         const planeMesh = new THREE.Mesh(planeGeometry, stoneMaterial);
         scene.add(planeMesh);
 
-        // Ambient Light
-        const ambientLight = new THREE.AmbientLight(0xffffff, isLightMode ? 0.35 : 0.08);
+        // Ambient Light (gives a clean, premium base illumination)
+        const ambientLight = new THREE.AmbientLight(0xffffff, isLightMode ? 0.85 : 0.15);
         scene.add(ambientLight);
 
-        // Spotlight tracking cursor (casts the soft flashlight glow, matching Hamilton)
-        const spotlight = new THREE.SpotLight(0xffffff, isLightMode ? 1.3 : 3.5, 20, Math.PI / 3.2, 0.7, 1.2);
-        spotlight.position.set(0, 0, 3.5);
-        scene.add(spotlight);
-        scene.add(spotlight.target);
+        // Directional Light (stationary architectural light from top-left, casts crisp chiseled shadows/highlights)
+        const dirLight = new THREE.DirectionalLight(0xffffff, isLightMode ? 0.35 : 1.0);
+        dirLight.position.set(-3, 3, 4);
+        scene.add(dirLight);
 
         // Responsive viewport plane calculation
         const getVisibleSize = (depth) => {
@@ -158,44 +156,13 @@ document.addEventListener("DOMContentLoaded", () => {
         window.addEventListener("resize", resizeWebGL);
         resizeWebGL();
 
-        // Interactive Mouse Move Easing
-        let easedMouse = { x: 0, y: 0 };
-
         const tick = () => {
-            const targetX = mouse.active ? (mouse.x / window.innerWidth - 0.5) * 8 : 0;
-            const targetY = mouse.active ? -(mouse.y / window.innerHeight - 0.5) * 4.5 : 0;
-            
-            easedMouse.x += (targetX - easedMouse.x) * 0.06;
-            easedMouse.y += (targetY - easedMouse.y) * 0.06;
-            
-            spotlight.position.x = easedMouse.x;
-            spotlight.position.y = easedMouse.y;
-            spotlight.target.position.set(easedMouse.x * 0.7, easedMouse.y * 0.7, 0);
-            
             renderer.render(scene, camera);
             requestAnimationFrame(tick);
         };
         tick();
 
-        // Mouse events
-        window.addEventListener("mousemove", (e) => {
-            mouse.x = e.clientX;
-            mouse.y = e.clientY;
-            mouse.active = true;
-            
-            if (mouseGlow) {
-                mouseGlow.style.opacity = "1";
-                mouseGlow.style.left = `${e.clientX}px`;
-                mouseGlow.style.top = `${e.clientY}px`;
-            }
-        });
 
-        window.addEventListener("mouseleave", () => {
-            mouse.active = false;
-            if (mouseGlow) {
-                mouseGlow.style.opacity = "0";
-            }
-        });
 
         // Theme transition logic inside WebGL context
         if (themeToggle) {
@@ -205,13 +172,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 
                 const targetColor = isLightMode ? new THREE.Color(0xdadcdc) : new THREE.Color(0x0e0f0f);
                 const targetAmbient = isLightMode ? 0.35 : 0.08;
-                const targetSpot = isLightMode ? 1.3 : 3.5;
+                const targetDir = isLightMode ? 0.35 : 1.0;
                 
                 let progress = 0;
                 const duration = 40;
                 const startColor = stoneMaterial.color.clone();
                 const startAmbient = ambientLight.intensity;
-                const startSpot = spotlight.intensity;
+                const startDir = dirLight.intensity;
                 
                 const fadeTheme = () => {
                     progress++;
@@ -220,7 +187,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     
                     stoneMaterial.color.lerpColors(startColor, targetColor, ease);
                     ambientLight.intensity = startAmbient + (targetAmbient - startAmbient) * ease;
-                    spotlight.intensity = startSpot + (targetSpot - startSpot) * ease;
+                    dirLight.intensity = startDir + (targetDir - startDir) * ease;
                     
                     if (progress < duration) {
                         requestAnimationFrame(fadeTheme);
