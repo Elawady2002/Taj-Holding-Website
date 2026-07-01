@@ -211,7 +211,7 @@ body.light-theme .action-icon {
 }
 
 .logo-emblem {
-    filter: url(#deboss-filter);
+    display: none; /* Physically carved in 3D WebGL via the bumpMap */
 }
 
 .logo-text {

@@ -98,6 +98,45 @@ document.addEventListener("DOMContentLoaded", () => {
             bctx.fillStyle = coverGrad;
             bctx.fillRect(0, 0, 2048, 2048);
             
+            // 5. Draw 3D chiseled logo emblem directly on the bump map (creates a physical carving in WebGL)
+            bctx.save();
+            const s = 7.5; // Matches SVG scale
+            // Map SVG viewBox center (68.5, 24) to Canvas center (1024, 1024)
+            bctx.translate(1024 - 68.5 * s, 1024 - 24 * s);
+            bctx.scale(s, s);
+
+            const path1 = new Path2D("M19.5514 0V8.48347L7.35105 15.5279V27.3762L0 39.1726V11.2837L7.35105 7.04117V7.04441L19.5514 0Z");
+            const path2 = new Path2D("M19.5512 8.4834L19.5204 8.53207V8.53531L0.213989 39.5165H9.27341L9.74228 38.7053L11.2089 36.1662H24.6277L31.333 32.2952V27.1798L19.5512 8.4834ZM19.5512 28.8168H15.4498L19.5366 21.7416L19.5529 21.7691L23.6234 28.8184H19.5529L19.5512 28.8168Z");
+            const path3 = new Path2D("M39.0493 8.4834V10.9592H39.046V36.7454L31.695 40.988L19.5514 47.9999V39.5165L31.3316 32.7154L31.695 32.5061V8.4834H39.0493Z");
+
+            // 5a. Draw chiseled highlight edge at bottom-right (raised stroke)
+            bctx.strokeStyle = "rgba(220, 220, 220, 0.4)";
+            bctx.lineWidth = 0.8;
+            bctx.save();
+            bctx.translate(0.2, 0.2);
+            bctx.stroke(path1);
+            bctx.stroke(path2);
+            bctx.stroke(path3);
+            bctx.restore();
+
+            // 5b. Draw chiseled dark recess fill (carved depth)
+            bctx.fillStyle = "#202020";
+            bctx.fill(path1);
+            bctx.fill(path2);
+            bctx.fill(path3);
+
+            // 5c. Draw chiseled shadow edge at top-left (deep shadow stroke)
+            bctx.strokeStyle = "rgba(0, 0, 0, 0.8)";
+            bctx.lineWidth = 0.6;
+            bctx.save();
+            bctx.translate(-0.1, -0.1);
+            bctx.stroke(path1);
+            bctx.stroke(path2);
+            bctx.stroke(path3);
+            bctx.restore();
+
+            bctx.restore();
+            
             return bumpCanvas;
         };
 
@@ -109,8 +148,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const stoneColor = isLightMode ? 0xdddfdf : 0x0f1010;
         const stoneMaterial = new THREE.MeshStandardMaterial({
             color: new THREE.Color(stoneColor),
-            roughness: 0.88,
-            metalness: 0.05,
+            roughness: 1.0,  // Matte stone texture (absorbs light, no specular hotspots)
+            metalness: 0.0,  // Non-metallic
             bumpMap: bumpTexture,
             bumpScale: 0.015 // Softer physical bump mapping prevents black grid artifacts
         });
@@ -124,12 +163,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const ambientLight = new THREE.AmbientLight(0xffffff, isLightMode ? 0.35 : 0.08);
         scene.add(ambientLight);
 
-        // Point Light tracking cursor (specular reflections in chiseled grooves)
-        const pointLight = new THREE.PointLight(0xffffff, isLightMode ? 1.6 : 2.0, 15);
-        pointLight.position.set(0, 0, 1.8);
-        scene.add(pointLight);
-
-        // Spotlight tracking cursor
+        // Spotlight tracking cursor (casts the soft flashlight glow, matching Hamilton)
         const spotlight = new THREE.SpotLight(0xffffff, isLightMode ? 2.5 : 4.0, 20, Math.PI / 3.5, 0.6, 1.2);
         spotlight.position.set(0, 0, 3.5);
         scene.add(spotlight);
@@ -177,9 +211,6 @@ document.addEventListener("DOMContentLoaded", () => {
             spotlight.position.y = easedMouse.y;
             spotlight.target.position.set(easedMouse.x * 0.7, easedMouse.y * 0.7, 0);
             
-            pointLight.position.x = easedMouse.x;
-            pointLight.position.y = easedMouse.y;
-            
             renderer.render(scene, camera);
             requestAnimationFrame(tick);
         };
@@ -212,16 +243,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 themeToggle.classList.toggle("active");
                 
                 const targetColor = isLightMode ? new THREE.Color(0xdadcdc) : new THREE.Color(0x0e0f0f);
-                const targetAmbient = isLightMode ? 0.45 : 0.08;
-                const targetSpot = isLightMode ? 1.5 : 4.0;
-                const targetPoint = isLightMode ? 0.8 : 2.0;
+                const targetAmbient = isLightMode ? 0.35 : 0.08;
+                const targetSpot = isLightMode ? 2.5 : 4.0;
                 
                 let progress = 0;
                 const duration = 40;
                 const startColor = stoneMaterial.color.clone();
                 const startAmbient = ambientLight.intensity;
                 const startSpot = spotlight.intensity;
-                const startPoint = pointLight.intensity;
                 
                 const fadeTheme = () => {
                     progress++;
@@ -231,7 +260,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     stoneMaterial.color.lerpColors(startColor, targetColor, ease);
                     ambientLight.intensity = startAmbient + (targetAmbient - startAmbient) * ease;
                     spotlight.intensity = startSpot + (targetSpot - startSpot) * ease;
-                    pointLight.intensity = startPoint + (targetPoint - startPoint) * ease;
                     
                     if (progress < duration) {
                         requestAnimationFrame(fadeTheme);
