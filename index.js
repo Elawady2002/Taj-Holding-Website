@@ -138,14 +138,6 @@ document.addEventListener("DOMContentLoaded", () => {
             mouseGlow.style.left = `${e.clientX}px`;
             mouseGlow.style.top = `${e.clientY}px`;
         }
-        
-        // 3D Logo Rotation Card Effect
-        if (logoBox && embossedLogo) {
-            const rx = -(e.clientY - cy) / cy * 8; // Max 8 degrees pitch
-            const ry = (e.clientX - cx) / cx * 8;  // Max 8 degrees yaw
-            
-            embossedLogo.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg) translateZ(10px)`;
-        }
     });
 
     window.addEventListener("mouseleave", () => {
@@ -153,11 +145,6 @@ document.addEventListener("DOMContentLoaded", () => {
         
         if (mouseGlow) {
             mouseGlow.style.opacity = "0";
-        }
-        
-        // Smoothly reset logo box position
-        if (embossedLogo) {
-            embossedLogo.style.transform = "rotateX(0deg) rotateY(0deg) translateZ(0px)";
         }
     });
 

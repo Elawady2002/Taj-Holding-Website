@@ -19,23 +19,27 @@
         <defs>
             <!-- Premium Debossed/Letterpress 3D Filter -->
             <filter id="deboss-filter" x="-20%" y="-20%" width="140%" height="140%">
+                <!-- Base inner tint (slightly recesses the chiseled area) -->
+                <feFlood flood-color="var(--logo-tint-color, black)" flood-opacity="var(--logo-tint-opacity, 0.12)" result="tint"/>
+                <feComposite operator="in" in2="SourceGraphic" result="tinted-source"/>
+
                 <!-- Dark inner shadow (cutout depth) -->
-                <feGaussianBlur stdDeviation="1.2" result="blur"/>
-                <feOffset dx="2.0" dy="2.0"/>
+                <feGaussianBlur stdDeviation="0.8" result="blur"/>
+                <feOffset dx="1.5" dy="1.5"/>
                 <feComposite operator="out" in2="SourceGraphic" result="inverse"/>
                 <feFlood flood-color="var(--shadow-color)" flood-opacity="var(--shadow-opacity)" result="color"/>
                 <feComposite operator="in" in2="inverse" result="shadow"/>
                 
                 <!-- White inner highlight (bottom light reflection) -->
-                <feOffset dx="-2.0" dy="-2.0" in="SourceGraphic" result="offset-highlight"/>
-                <feGaussianBlur stdDeviation="1.2" in="offset-highlight" result="blur-highlight"/>
+                <feOffset dx="-1.2" dy="-1.2" in="SourceGraphic" result="offset-highlight"/>
+                <feGaussianBlur stdDeviation="0.8" in="offset-highlight" result="blur-highlight"/>
                 <feComposite operator="out" in2="SourceGraphic" result="inverse-highlight"/>
                 <feFlood flood-color="var(--highlight-color)" flood-opacity="var(--highlight-opacity)" result="color-highlight"/>
                 <feComposite operator="in" in2="inverse-highlight" result="highlight"/>
                 
-                <!-- Merge shapes together -->
+                <!-- Merge elements (tint, shadow, and highlight) without rendering solid SourceGraphic -->
                 <feMerge>
-                    <feMergeNode in="SourceGraphic"/>
+                    <feMergeNode in="tinted-source"/>
                     <feMergeNode in="shadow"/>
                     <feMergeNode in="highlight"/>
                 </feMerge>
