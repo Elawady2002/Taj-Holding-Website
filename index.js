@@ -44,19 +44,19 @@ document.addEventListener("DOMContentLoaded", () => {
             bctx.fillStyle = '#808080';
             bctx.fillRect(0, 0, 2048, 2048);
             
-            // 2. High-density horizontal micro-grain lines for concrete/plaster bump texture
-            for (let i = 0; i < 6000; i++) {
+            // 2. High-density horizontal micro-grain lines for concrete/plaster bump texture (very soft)
+            for (let i = 0; i < 2500; i++) {
                 const y = Math.random() * 2048;
-                const h = Math.random() * 1.5 + 0.5;
+                const h = Math.random() * 1.0 + 0.2;
                 const isLight = Math.random() > 0.5;
-                bctx.fillStyle = isLight ? 'rgba(255, 255, 255, 0.04)' : 'rgba(0, 0, 0, 0.04)';
+                bctx.fillStyle = isLight ? 'rgba(255, 255, 255, 0.015)' : 'rgba(0, 0, 0, 0.015)';
                 bctx.fillRect(0, y, 2048, h);
             }
             
             // 3. Draw 144 radiating grooves
             const cx = 1024, cy = 1024;
             const numLines = 144;
-            const innerGap = 200;
+            const innerGap = 220; // Expanded to clear the logo nicely
             const outerRadius = 1400;
             
             for (let i = 0; i < numLines; i++) {
@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const endX = cx + Math.cos(angle) * outerRadius;
                 const endY = cy + Math.sin(angle) * outerRadius;
                 
-                // Dark groove (depression)
+                // Dark groove (recessed slot)
                 bctx.strokeStyle = '#4e4e4e';
                 bctx.lineWidth = 4.5;
                 bctx.beginPath();
@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 bctx.lineTo(endX, endY);
                 bctx.stroke();
                 
-                // Highlight edge (raised catch)
+                // Highlight edge (raised edge catch)
                 bctx.strokeStyle = '#aeaeae';
                 bctx.lineWidth = 1.8;
                 bctx.beginPath();
@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
             
             // 4. Soft mask: smooth back to flat grey at center and corners
-            const coverGrad = bctx.createRadialGradient(cx, cy, 210, cx, cy, 750);
+            const coverGrad = bctx.createRadialGradient(cx, cy, 215, cx, cy, 750);
             coverGrad.addColorStop(0, 'rgba(128,128,128,1)');
             coverGrad.addColorStop(0.12, 'rgba(128,128,128,1)');
             coverGrad.addColorStop(0.22, 'rgba(128,128,128,0)');
@@ -109,10 +109,10 @@ document.addEventListener("DOMContentLoaded", () => {
             roughness: 0.88,
             metalness: 0.05,
             bumpMap: bumpTexture,
-            bumpScale: 0.16
+            bumpScale: 0.015 // Softer physical bump mapping prevents black grid artifacts
         });
 
-        // Set up the responsive stone plane mesh
+        // Set up the responsive stone plane mesh (perfect square prevents aspect-ratio stretching)
         let planeGeometry = new THREE.PlaneGeometry(1, 1);
         const planeMesh = new THREE.Mesh(planeGeometry, stoneMaterial);
         scene.add(planeMesh);
@@ -121,13 +121,13 @@ document.addEventListener("DOMContentLoaded", () => {
         const ambientLight = new THREE.AmbientLight(0xffffff, isLightMode ? 0.45 : 0.08);
         scene.add(ambientLight);
 
-        // Point Light tracking cursor (diffuse specular catches on grooves)
-        const pointLight = new THREE.PointLight(0xffffff, isLightMode ? 1.0 : 2.5, 12);
+        // Point Light tracking cursor (specular reflections in chiseled grooves)
+        const pointLight = new THREE.PointLight(0xffffff, isLightMode ? 0.8 : 2.0, 15);
         pointLight.position.set(0, 0, 1.8);
         scene.add(pointLight);
 
         // Spotlight tracking cursor
-        const spotlight = new THREE.SpotLight(0xffffff, isLightMode ? 3.0 : 6.0, 15, Math.PI / 3, 0.5, 1);
+        const spotlight = new THREE.SpotLight(0xffffff, isLightMode ? 1.5 : 4.0, 20, Math.PI / 3.5, 0.6, 1.2);
         spotlight.position.set(0, 0, 3.5);
         scene.add(spotlight);
         scene.add(spotlight.target);
@@ -145,7 +145,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const updatePlaneSize = () => {
             const size = getVisibleSize(0);
             if (planeGeometry) planeGeometry.dispose();
-            planeGeometry = new THREE.PlaneGeometry(size.width * 1.15, size.height * 1.15);
+            // Square geometry ensures a uniform aspect ratio for the bump map canvas
+            const maxSide = Math.max(size.width, size.height) * 1.35;
+            planeGeometry = new THREE.PlaneGeometry(maxSide, maxSide);
             if (planeMesh) planeMesh.geometry = planeGeometry;
         };
 
@@ -208,8 +210,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 
                 const targetColor = isLightMode ? new THREE.Color(0xdadcdc) : new THREE.Color(0x0e0f0f);
                 const targetAmbient = isLightMode ? 0.45 : 0.08;
-                const targetSpot = isLightMode ? 3.0 : 6.0;
-                const targetPoint = isLightMode ? 1.0 : 2.5;
+                const targetSpot = isLightMode ? 1.5 : 4.0;
+                const targetPoint = isLightMode ? 0.8 : 2.0;
                 
                 let progress = 0;
                 const duration = 40;
