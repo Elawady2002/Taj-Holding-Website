@@ -96,24 +96,33 @@ document.addEventListener("DOMContentLoaded", () => {
             const endX = cx + Math.cos(finalAngle) * endR;
             const endY = cy + Math.sin(finalAngle) * endR;
             
-            // Glow lighting effect near mouse angle
-            const highlightGlow = Math.max(0, 1 - diff / 0.3) * (mouseDist / 250);
+            // Proximity focus lighting effect near mouse angle
+            const focus = Math.max(0, 1 - diff / 0.15) * (mouse.active ? Math.min(1.5, mouseDist / 200) : 0);
             
-            // Determine alpha opacity
-            const baseAlpha = isLightMode ? 0.05 : 0.07;
-            const glowAlpha = isLightMode ? 0.08 : 0.12;
-            const alpha = baseAlpha + highlightGlow * glowAlpha;
+            // Base opacities for shadow and highlight to look like subtle stone cracks
+            const shadowBaseAlpha = isLightMode ? 0.08 : 0.45;
+            const highlightBaseAlpha = isLightMode ? 0.45 : 0.06;
             
+            // Scale opacity with focus
+            const shadowAlpha = shadowBaseAlpha + (isLightMode ? focus * 0.08 : focus * 0.15);
+            const highlightAlpha = highlightBaseAlpha + (isLightMode ? focus * 0.22 : focus * 0.06);
+            
+            const baseWidth = i % 6 === 0 ? 1.2 : 0.6;
+            
+            // Draw Shadow Stroke (Offset top-left)
             ctx.beginPath();
-            ctx.moveTo(startX, startY);
-            ctx.lineTo(endX, endY);
+            ctx.moveTo(startX - 0.5, startY - 0.5);
+            ctx.lineTo(endX - 0.5, endY - 0.5);
+            ctx.strokeStyle = `rgba(0, 0, 0, ${shadowAlpha})`;
+            ctx.lineWidth = baseWidth;
+            ctx.stroke();
             
-            // Render line
-            ctx.strokeStyle = isLightMode 
-                ? `rgba(0, 0, 0, ${alpha})`
-                : `rgba(255, 255, 255, ${alpha})`;
-                
-            ctx.lineWidth = i % 6 === 0 ? 1.5 : 0.8; // Grid structure rhythm
+            // Draw Highlight Stroke (Offset bottom-right)
+            ctx.beginPath();
+            ctx.moveTo(startX + 0.5, startY + 0.5);
+            ctx.lineTo(endX + 0.5, endY + 0.5);
+            ctx.strokeStyle = `rgba(255, 255, 255, ${highlightAlpha})`;
+            ctx.lineWidth = baseWidth;
             ctx.stroke();
         }
         

@@ -7,7 +7,7 @@
     --transition-fast: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 
     /* Dark Theme Variables (Default) */
-    --bg-color: #0b0c0c;
+    --bg-color: radial-gradient(circle at 15% 15%, #151717 0%, #060707 100%);
     --logo-fill: #0d0e0e;
     --line-color: rgba(255, 255, 255, 0.035);
     --text-color: rgba(255, 255, 255, 0.85);
@@ -31,7 +31,7 @@
 
 body.light-theme {
     /* Light Theme Variables */
-    --bg-color: #e3e5e5;
+    --bg-color: radial-gradient(circle at 15% 15%, #ebebeb 0%, #cfd1d1 100%);
     --logo-fill: #e3e5e5;
     --line-color: rgba(0, 0, 0, 0.035);
     --text-color: rgba(0, 0, 0, 0.8);
@@ -64,11 +64,30 @@ html, body {
     width: 100%;
     height: 100%;
     overflow: hidden;
-    background-color: var(--bg-color);
+    background: var(--bg-color);
     color: var(--text-color);
     font-family: 'Outfit', sans-serif;
-    transition: background-color 0.8s cubic-bezier(0.16, 1, 0.3, 1), color 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: background 0.8s cubic-bezier(0.16, 1, 0.3, 1), color 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     user-select: none;
+    position: relative;
+}
+
+/* Micro-grain Stone Texture Overlay */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.02; /* Extremely subtle dark stone basalt texture */
+    pointer-events: none;
+    z-index: 0;
+}
+
+body.light-theme::before {
+    opacity: 0.015; /* Soft limestone grain texture */
 }
 
 /* Interactive Background Canvas */
@@ -80,8 +99,8 @@ html, body {
     height: 100vh;
     z-index: 1;
     pointer-events: none;
-    mask-image: radial-gradient(circle at center, transparent 18%, black 48%, black 75%, transparent 98%);
-    -webkit-mask-image: radial-gradient(circle at center, transparent 18%, black 48%, black 75%, transparent 98%);
+    mask-image: radial-gradient(circle at center, transparent 20%, black 42%, black 50%, transparent 68%);
+    -webkit-mask-image: radial-gradient(circle at center, transparent 20%, black 42%, black 50%, transparent 68%);
 }
 
 /* Cursor Glow Overlay */
