@@ -20,7 +20,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // --- State Variables ---
     let currentLang = "en";
-    let isLightMode = false;
+    let isLightMode = true;
+    if (themeToggle) {
+        themeToggle.classList.add("active");
+    }
     let mouse = { x: 0, y: 0, active: false };
 
     // --- Three.js WebGL Setup ---
@@ -118,16 +121,16 @@ document.addEventListener("DOMContentLoaded", () => {
         scene.add(planeMesh);
 
         // Ambient Light
-        const ambientLight = new THREE.AmbientLight(0xffffff, isLightMode ? 0.45 : 0.08);
+        const ambientLight = new THREE.AmbientLight(0xffffff, isLightMode ? 0.35 : 0.08);
         scene.add(ambientLight);
 
         // Point Light tracking cursor (specular reflections in chiseled grooves)
-        const pointLight = new THREE.PointLight(0xffffff, isLightMode ? 0.8 : 2.0, 15);
+        const pointLight = new THREE.PointLight(0xffffff, isLightMode ? 1.6 : 2.0, 15);
         pointLight.position.set(0, 0, 1.8);
         scene.add(pointLight);
 
         // Spotlight tracking cursor
-        const spotlight = new THREE.SpotLight(0xffffff, isLightMode ? 1.5 : 4.0, 20, Math.PI / 3.5, 0.6, 1.2);
+        const spotlight = new THREE.SpotLight(0xffffff, isLightMode ? 2.5 : 4.0, 20, Math.PI / 3.5, 0.6, 1.2);
         spotlight.position.set(0, 0, 3.5);
         scene.add(spotlight);
         scene.add(spotlight.target);

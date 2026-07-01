@@ -215,10 +215,12 @@ body.light-theme .action-icon {
 }
 
 .logo-text {
+    fill: var(--text-color) !important;
     filter: drop-shadow(-0.5px -0.5px 0.5px rgba(0, 0, 0, 0.75)) drop-shadow(0.5px 0.5px 0.5px rgba(255, 255, 255, 0.12));
 }
 
 body.light-theme .logo-text {
+    fill: var(--text-color) !important;
     filter: drop-shadow(-0.5px -0.5px 0.5px rgba(0, 0, 0, 0.22)) drop-shadow(0.5px 0.5px 0.5px rgba(255, 255, 255, 0.85));
 }
 
