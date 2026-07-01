@@ -8,7 +8,7 @@
 
     /* Dark Theme Variables (Default) */
     --bg-color: radial-gradient(circle at 15% 15%, #151717 0%, #060707 100%);
-    --logo-fill: #0d0e0e;
+    --logo-fill: rgba(255, 255, 255, 0.02);
     --line-color: rgba(255, 255, 255, 0.035);
     --text-color: rgba(255, 255, 255, 0.85);
     --text-muted: rgba(255, 255, 255, 0.4);
@@ -20,11 +20,11 @@
     --shadow-color: #000000;
     --shadow-opacity: 0.85;
     --highlight-color: #ffffff;
-    --highlight-opacity: 0.12;
+    --highlight-opacity: 0.15;
     
     /* Logo Tint/Recess overlay */
     --logo-tint-color: #000000;
-    --logo-tint-opacity: 0.18;
+    --logo-tint-opacity: 0.02;
     
     /* Glow Spotlight */
     --glow-color: rgba(255, 255, 255, 0.04);
@@ -33,7 +33,7 @@
 body.light-theme {
     /* Light Theme Variables */
     --bg-color: radial-gradient(circle at 15% 15%, #ebebeb 0%, #cfd1d1 100%);
-    --logo-fill: #e3e5e5;
+    --logo-fill: rgba(0, 0, 0, 0.02);
     --line-color: rgba(0, 0, 0, 0.035);
     --text-color: rgba(0, 0, 0, 0.8);
     --text-muted: rgba(0, 0, 0, 0.45);
@@ -43,13 +43,13 @@ body.light-theme {
     
     /* SVG Deboss Filter variables */
     --shadow-color: #000000;
-    --shadow-opacity: 0.22;
+    --shadow-opacity: 0.25;
     --highlight-color: #ffffff;
-    --highlight-opacity: 0.9;
+    --highlight-opacity: 0.95;
     
     /* Logo Tint/Recess overlay */
     --logo-tint-color: #000000;
-    --logo-tint-opacity: 0.08;
+    --logo-tint-opacity: 0.02;
     
     /* Glow Spotlight */
     --glow-color: rgba(0, 0, 0, 0.03);
@@ -211,7 +211,8 @@ body.light-theme .action-icon {
 }
 
 .logo-emblem {
-    display: none; /* Physically carved in 3D WebGL via the bumpMap */
+    filter: url(#deboss-filter);
+    mix-blend-mode: overlay;
 }
 
 .logo-text {
