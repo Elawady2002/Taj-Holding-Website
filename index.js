@@ -21,149 +21,228 @@ document.addEventListener("DOMContentLoaded", () => {
     // --- State Variables ---
     let currentLang = "en";
     let isLightMode = false;
-    
-    // Mouse tracking variables with easing (lerp)
-    let mouse = { x: 0, y: 0, targetX: 0, targetY: 0, active: false };
-    
-    // Center point of screen
-    let cx = window.innerWidth / 2;
-    let cy = window.innerHeight / 2;
+    let mouse = { x: 0, y: 0, active: false };
 
-    // --- Window Resize Handler ---
-    const resizeCanvas = () => {
-        if (!canvas) return;
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        cx = window.innerWidth / 2;
-        cy = window.innerHeight / 2;
-    };
-    window.addEventListener("resize", resizeCanvas);
-    resizeCanvas();
+    // --- Three.js WebGL Setup ---
+    if (canvas) {
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
+        camera.position.z = 8;
 
-    // --- Canvas Line Animation Logic ---
-    const ctx = canvas ? canvas.getContext("2d") : null;
-    const numLines = 144; // Premium line density
-    let time = 0;
-    
-    const animateLines = () => {
-        if (!canvas || !ctx) return;
-        
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        
-        // Easing mouse coordinates
-        if (mouse.active) {
-            mouse.x += (mouse.targetX - mouse.x) * 0.08;
-            mouse.y += (mouse.targetY - mouse.y) * 0.08;
-        } else {
-            // Smoothly ease back to center when mouse leaves
-            mouse.x += (cx - mouse.x) * 0.08;
-            mouse.y += (cy - mouse.y) * 0.08;
-        }
-        
-        time += 0.003; // Smooth breathing speed
-        
-        const baseRadius = Math.max(canvas.width, canvas.height) * 0.85;
-        const innerGap = window.innerWidth < 768 ? 100 : 160; // Clean area for logo
-        
-        // Calculated mouse relative coordinates
-        const dx = mouse.x - cx;
-        const dy = mouse.y - cy;
-        const mouseDist = Math.hypot(dx, dy);
-        const mouseAngle = Math.atan2(dy, dx);
-        
-        // Drawing lines
-        for (let i = 0; i < numLines; i++) {
-            const angle = (i / numLines) * Math.PI * 2;
-            
-            // Calculate angular difference to mouse
-            let diff = Math.abs(angle - mouseAngle);
-            if (diff > Math.PI) diff = Math.PI * 2 - diff;
-            
-            // Subtle 3D warp bending lines towards mouse cursor
-            const proximity = Math.max(0, 1 - mouseDist / 600); // Effect fades with distance
-            const angleWarp = Math.sin(angle - mouseAngle) * 0.05 * proximity * Math.max(0, 1 - diff / 1.5);
-            const finalAngle = angle - angleWarp;
-            
-            // Pulse wave calculation
-            const wave = Math.sin(time * 2.0 + i * 0.15) * 8;
-            
-            // Start and end points of lines (leaving a clean space in center)
-            const startR = innerGap + Math.cos(time * 3 + i * 0.08) * 4;
-            const endR = baseRadius + wave;
-            
-            const startX = cx + Math.cos(finalAngle) * startR;
-            const startY = cy + Math.sin(finalAngle) * startR;
-            const endX = cx + Math.cos(finalAngle) * endR;
-            const endY = cy + Math.sin(finalAngle) * endR;
-            
-            // Base opacities for shadow and highlight to look like subtle stone cracks
-            const shadowAlpha = isLightMode ? 0.08 : 0.45;
-            const highlightAlpha = isLightMode ? 0.45 : 0.06;
-            
-            const baseWidth = i % 6 === 0 ? 1.2 : 0.6;
-            
-            // Draw Shadow Stroke (Offset top-left)
-            ctx.beginPath();
-            ctx.moveTo(startX - 0.5, startY - 0.5);
-            ctx.lineTo(endX - 0.5, endY - 0.5);
-            ctx.strokeStyle = `rgba(0, 0, 0, ${shadowAlpha})`;
-            ctx.lineWidth = baseWidth;
-            ctx.stroke();
-            
-            // Draw Highlight Stroke (Offset bottom-right)
-            ctx.beginPath();
-            ctx.moveTo(startX + 0.5, startY + 0.5);
-            ctx.lineTo(endX + 0.5, endY + 0.5);
-            ctx.strokeStyle = `rgba(255, 255, 255, ${highlightAlpha})`;
-            ctx.lineWidth = baseWidth;
-            ctx.stroke();
-        }
-        
-        requestAnimationFrame(animateLines);
-    };
-    
-    if (canvas && ctx) {
-        animateLines();
-    }
+        const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-    // --- Interactive Mouse Movement Events ---
-    window.addEventListener("mousemove", (e) => {
-        mouse.targetX = e.clientX;
-        mouse.targetY = e.clientY;
-        mouse.active = true;
-        
-        // Spotlight Glow Positioning
-        if (mouseGlow) {
-            mouseGlow.style.opacity = "1";
-            mouseGlow.style.left = `${e.clientX}px`;
-            mouseGlow.style.top = `${e.clientY}px`;
-        }
-    });
-
-    window.addEventListener("mouseleave", () => {
-        mouse.active = false;
-        
-        if (mouseGlow) {
-            mouseGlow.style.opacity = "0";
-        }
-    });
-
-    // --- Theme Toggle System ---
-    if (themeToggle) {
-        themeToggle.addEventListener("click", () => {
-            isLightMode = !isLightMode;
+        // Generate the high-resolution bump map canvas dynamically
+        const generateBumpCanvas = () => {
+            const bumpCanvas = document.createElement('canvas');
+            bumpCanvas.width = 2048;
+            bumpCanvas.height = 2048;
+            const bctx = bumpCanvas.getContext('2d');
             
-            // Apply theme toggle animation
-            themeToggle.classList.toggle("active");
+            // 1. Fill base neutral grey
+            bctx.fillStyle = '#808080';
+            bctx.fillRect(0, 0, 2048, 2048);
             
-            if (isLightMode) {
-                document.body.classList.remove("dark-theme");
-                document.body.classList.add("light-theme");
-            } else {
-                document.body.classList.remove("light-theme");
-                document.body.classList.add("dark-theme");
+            // 2. High-density horizontal micro-grain lines for concrete/plaster bump texture
+            for (let i = 0; i < 6000; i++) {
+                const y = Math.random() * 2048;
+                const h = Math.random() * 1.5 + 0.5;
+                const isLight = Math.random() > 0.5;
+                bctx.fillStyle = isLight ? 'rgba(255, 255, 255, 0.04)' : 'rgba(0, 0, 0, 0.04)';
+                bctx.fillRect(0, y, 2048, h);
+            }
+            
+            // 3. Draw 144 radiating grooves
+            const cx = 1024, cy = 1024;
+            const numLines = 144;
+            const innerGap = 200;
+            const outerRadius = 1400;
+            
+            for (let i = 0; i < numLines; i++) {
+                const angle = (i / numLines) * Math.PI * 2;
+                const startX = cx + Math.cos(angle) * innerGap;
+                const startY = cy + Math.sin(angle) * innerGap;
+                const endX = cx + Math.cos(angle) * outerRadius;
+                const endY = cy + Math.sin(angle) * outerRadius;
+                
+                // Dark groove (depression)
+                bctx.strokeStyle = '#4e4e4e';
+                bctx.lineWidth = 4.5;
+                bctx.beginPath();
+                bctx.moveTo(startX, startY);
+                bctx.lineTo(endX, endY);
+                bctx.stroke();
+                
+                // Highlight edge (raised catch)
+                bctx.strokeStyle = '#aeaeae';
+                bctx.lineWidth = 1.8;
+                bctx.beginPath();
+                bctx.moveTo(startX + 1.2, startY + 1.2);
+                bctx.lineTo(endX + 1.2, endY + 1.2);
+                bctx.stroke();
+            }
+            
+            // 4. Soft mask: smooth back to flat grey at center and corners
+            const coverGrad = bctx.createRadialGradient(cx, cy, 210, cx, cy, 750);
+            coverGrad.addColorStop(0, 'rgba(128,128,128,1)');
+            coverGrad.addColorStop(0.12, 'rgba(128,128,128,1)');
+            coverGrad.addColorStop(0.22, 'rgba(128,128,128,0)');
+            coverGrad.addColorStop(0.68, 'rgba(128,128,128,0)');
+            coverGrad.addColorStop(0.85, 'rgba(128,128,128,1)');
+            coverGrad.addColorStop(1, 'rgba(128,128,128,1)');
+            
+            bctx.fillStyle = coverGrad;
+            bctx.fillRect(0, 0, 2048, 2048);
+            
+            return bumpCanvas;
+        };
+
+        const bumpCanvas = generateBumpCanvas();
+        const bumpTexture = new THREE.CanvasTexture(bumpCanvas);
+        bumpTexture.wrapS = THREE.RepeatWrapping;
+        bumpTexture.wrapT = THREE.RepeatWrapping;
+
+        const stoneColor = isLightMode ? 0xdddfdf : 0x0f1010;
+        const stoneMaterial = new THREE.MeshStandardMaterial({
+            color: new THREE.Color(stoneColor),
+            roughness: 0.88,
+            metalness: 0.05,
+            bumpMap: bumpTexture,
+            bumpScale: 0.16
+        });
+
+        // Set up the responsive stone plane mesh
+        let planeGeometry = new THREE.PlaneGeometry(1, 1);
+        const planeMesh = new THREE.Mesh(planeGeometry, stoneMaterial);
+        scene.add(planeMesh);
+
+        // Ambient Light
+        const ambientLight = new THREE.AmbientLight(0xffffff, isLightMode ? 0.45 : 0.08);
+        scene.add(ambientLight);
+
+        // Point Light tracking cursor (diffuse specular catches on grooves)
+        const pointLight = new THREE.PointLight(0xffffff, isLightMode ? 1.0 : 2.5, 12);
+        pointLight.position.set(0, 0, 1.8);
+        scene.add(pointLight);
+
+        // Spotlight tracking cursor
+        const spotlight = new THREE.SpotLight(0xffffff, isLightMode ? 3.0 : 6.0, 15, Math.PI / 3, 0.5, 1);
+        spotlight.position.set(0, 0, 3.5);
+        scene.add(spotlight);
+        scene.add(spotlight.target);
+
+        // Responsive viewport plane calculation
+        const getVisibleSize = (depth) => {
+            const cameraOffset = camera.position.z;
+            if (depth >= cameraOffset) return { width: 0, height: 0 };
+            const vFOV = (camera.fov * Math.PI) / 180;
+            const height = 2 * Math.tan(vFOV / 2) * (cameraOffset - depth);
+            const width = height * camera.aspect;
+            return { width, height };
+        };
+
+        const updatePlaneSize = () => {
+            const size = getVisibleSize(0);
+            if (planeGeometry) planeGeometry.dispose();
+            planeGeometry = new THREE.PlaneGeometry(size.width * 1.15, size.height * 1.15);
+            if (planeMesh) planeMesh.geometry = planeGeometry;
+        };
+
+        const resizeWebGL = () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            updatePlaneSize();
+        };
+        window.addEventListener("resize", resizeWebGL);
+        resizeWebGL();
+
+        // Interactive Mouse Move Easing
+        let easedMouse = { x: 0, y: 0 };
+
+        const tick = () => {
+            const targetX = mouse.active ? (mouse.x / window.innerWidth - 0.5) * 8 : 0;
+            const targetY = mouse.active ? -(mouse.y / window.innerHeight - 0.5) * 4.5 : 0;
+            
+            easedMouse.x += (targetX - easedMouse.x) * 0.06;
+            easedMouse.y += (targetY - easedMouse.y) * 0.06;
+            
+            spotlight.position.x = easedMouse.x;
+            spotlight.position.y = easedMouse.y;
+            spotlight.target.position.set(easedMouse.x * 0.7, easedMouse.y * 0.7, 0);
+            
+            pointLight.position.x = easedMouse.x;
+            pointLight.position.y = easedMouse.y;
+            
+            renderer.render(scene, camera);
+            requestAnimationFrame(tick);
+        };
+        tick();
+
+        // Mouse events
+        window.addEventListener("mousemove", (e) => {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+            mouse.active = true;
+            
+            if (mouseGlow) {
+                mouseGlow.style.opacity = "1";
+                mouseGlow.style.left = `${e.clientX}px`;
+                mouseGlow.style.top = `${e.clientY}px`;
             }
         });
+
+        window.addEventListener("mouseleave", () => {
+            mouse.active = false;
+            if (mouseGlow) {
+                mouseGlow.style.opacity = "0";
+            }
+        });
+
+        // Theme transition logic inside WebGL context
+        if (themeToggle) {
+            themeToggle.addEventListener("click", () => {
+                isLightMode = !isLightMode;
+                themeToggle.classList.toggle("active");
+                
+                const targetColor = isLightMode ? new THREE.Color(0xdadcdc) : new THREE.Color(0x0e0f0f);
+                const targetAmbient = isLightMode ? 0.45 : 0.08;
+                const targetSpot = isLightMode ? 3.0 : 6.0;
+                const targetPoint = isLightMode ? 1.0 : 2.5;
+                
+                let progress = 0;
+                const duration = 40;
+                const startColor = stoneMaterial.color.clone();
+                const startAmbient = ambientLight.intensity;
+                const startSpot = spotlight.intensity;
+                const startPoint = pointLight.intensity;
+                
+                const fadeTheme = () => {
+                    progress++;
+                    const t = progress / duration;
+                    const ease = 1 - Math.pow(1 - t, 3);
+                    
+                    stoneMaterial.color.lerpColors(startColor, targetColor, ease);
+                    ambientLight.intensity = startAmbient + (targetAmbient - startAmbient) * ease;
+                    spotlight.intensity = startSpot + (targetSpot - startSpot) * ease;
+                    pointLight.intensity = startPoint + (targetPoint - startPoint) * ease;
+                    
+                    if (progress < duration) {
+                        requestAnimationFrame(fadeTheme);
+                    }
+                };
+                fadeTheme();
+                
+                if (isLightMode) {
+                    document.body.classList.remove("dark-theme");
+                    document.body.classList.add("light-theme");
+                } else {
+                    document.body.classList.remove("light-theme");
+                    document.body.classList.add("dark-theme");
+                }
+            });
+        }
     }
 
     // --- Language Translation & RTL Toggle System ---
